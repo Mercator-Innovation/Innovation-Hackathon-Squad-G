@@ -106,6 +106,15 @@
     return { name: townName, lat: towns[townName].lat, lng: towns[townName].lng };
   }
 
+  // Is there any in-person place (with a town) for this person's situation?
+  function hasPlacesToVisit() {
+    return services.concat(window.HELPLINES).some(function (s) {
+      if (!s.town) return false;
+      if (s.who && s.who.indexOf(answers.who) === -1) return false;
+      return s.needs.indexOf("all") !== -1 || s.needs.indexOf(answers.need) !== -1;
+    });
+  }
+
   function distanceTo(service) {
     if (!service.town || !answers.where) return null;
     return milesBetween(answers.where, window.PLACES.towns[service.town]);
@@ -197,7 +206,11 @@
         backButton(),
         el("h1", { text: C.need.heading }),
         el("p", { class: "meta", text: C.need.hint }),
-        choiceList(C.need.options, function (id) { answers.need = id; show("where"); })
+        choiceList(C.need.options, function (id) {
+          answers.need = id;
+          // Only ask where they are if there's somewhere to go in person for this.
+          if (hasPlacesToVisit()) { show("where"); } else { answers.where = null; show("results"); }
+        })
       );
     },
 
