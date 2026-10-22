@@ -39,6 +39,7 @@ window.DATA = {
     },
     {
       name: "Harbour Drop-in (example)",
+      topics: ["drugs"],
       anonymous: true,
       what: "Clean equipment, naloxone, a hot drink and a chat. No appointment.",
       contact: { visit: "12 Example Street, city centre" },
@@ -91,6 +92,7 @@ window.DATA = {
     },
     {
       name: "Clyde Coast Drop-in (example)",
+      topics: ["drugs"],
       anonymous: true,
       what: "Clean equipment, naloxone and someone to talk to. Just turn up.",
       contact: { phone: "0306 999 0606", visit: "Harbour Road, Greenock" },
