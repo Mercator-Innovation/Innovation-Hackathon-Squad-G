@@ -4,12 +4,14 @@
 // hours: list of { days: [0-6, Sunday is 0], from: hour, to: hour }.
 // "to" can go past 24 for overnight, e.g. from 20 to 30 means 8pm to 6am.
 // who: me, someone, worker. needs: talk, safer, cut-down, somewhere, family.
+// anonymous: true if you can use it without giving your name.
 // town: for places you go to in person (a town in places.js). Phone and online services have no town.
 
 window.DATA = {
   services: [
     {
       name: "Nightline Peer Support (example)",
+      anonymous: true,
       what: "Talk to someone who has been through it. They will listen, not lecture.",
       contact: { phone: "0808 157 0101", text: "07700 900101" },
       hours: [{ days: [0, 1, 2, 3, 4, 5, 6], from: 20, to: 30 }],
@@ -33,6 +35,7 @@ window.DATA = {
     },
     {
       name: "Harbour Drop-in (example)",
+      anonymous: true,
       what: "Clean equipment, naloxone, a hot drink and a chat. No appointment.",
       contact: { visit: "12 Example Street, city centre" },
       hours: [{ days: [0, 5, 6], from: 18, to: 24 }],
@@ -63,6 +66,7 @@ window.DATA = {
     },
     {
       name: "Reach Out Web Chat (example)",
+      anonymous: true,
       what: "Chat online with a trained volunteer. You do not have to give your name.",
       contact: { chat: "#" },
       hours: [{ days: [0, 1, 2, 3, 4, 5, 6], from: 18, to: 26 }],
@@ -83,6 +87,7 @@ window.DATA = {
     },
     {
       name: "Clyde Coast Drop-in (example)",
+      anonymous: true,
       what: "Clean equipment, naloxone and someone to talk to. Just turn up.",
       contact: { phone: "0306 999 0606", visit: "Harbour Road, Greenock" },
       hours: [{ days: [1, 3, 5], from: 12, to: 20 }],
@@ -93,6 +98,7 @@ window.DATA = {
     },
     {
       name: "Capital Night Café (example)",
+      anonymous: true,
       what: "A warm café run by people in recovery. Open late at weekends.",
       contact: { visit: "Example Lane, Edinburgh" },
       hours: [{ days: [0, 5, 6], from: 19, to: 25 }],

@@ -153,9 +153,14 @@
       main.append(
         el("h1", { text: C.start.heading }),
         el("p", { text: C.start.intro }),
+        el("p", { class: "meta", text: C.start.examples }),
         el("ul", { class: "choices" }, [
           el("li", {}, [el("button", { class: "button danger", type: "button", text: C.start.yes, onclick: function () { show("emergency"); } })]),
           el("li", {}, [el("button", { class: "button", type: "button", text: C.start.no, onclick: function () { show("who"); } })]),
+        ]),
+        el("section", { class: "privacy", "aria-labelledby": "privacy-heading" }, [
+          el("h2", { id: "privacy-heading", text: C.privacy.heading }),
+          el("ul", {}, C.privacy.points.map(function (p) { return el("li", { text: p }); })),
         ])
       );
     },
@@ -267,7 +272,7 @@
         return d !== null && d <= MAX_MILES;
       });
 
-      main.append(backButton(), el("h1", { text: C.results.heading }));
+      main.append(backButton(), el("h1", { text: C.results.heading }), el("p", { text: C.results.intro }));
       if (answers.where) {
         main.append(el("p", { class: "meta" }, [
           document.createTextNode(C.results.near + " " + answers.where.name + ". " + C.results.tooFarNote + " "),
@@ -326,6 +331,7 @@
     return el("section", { class: "service", "aria-label": s.name }, [
       el("h3", { text: s.name }),
       status,
+      s.anonymous ? el("p", { class: "no-name", text: C.results.noName }) : null,
       el("p", { text: s.what }),
       placeText(s) ? el("p", { class: "meta", text: placeText(s) + (s.lowData ? " · " + C.results.lowData : "") }) : null,
       ways.length ? el("div", { class: "ways" }, ways) : null,
