@@ -211,6 +211,7 @@ window.DATA = {
     { id: "mon-08", label: "Monday 8am", day: 1, hour: 8 },
     { id: "tue-11", label: "Tuesday 11am", day: 2, hour: 11 },
     { id: "fri-17", label: "Friday 5pm", day: 5, hour: 17 },
+    { id: "fri-1930", label: "Friday 7:30pm", day: 5, hour: 19.5 },
     { id: "fri-20", label: "Friday 8pm", day: 5, hour: 20 },
     { id: "fri-23", label: "Friday 11pm", day: 5, hour: 23 },
     { id: "sun-03", label: "Sunday 3am", day: 0, hour: 3 },
