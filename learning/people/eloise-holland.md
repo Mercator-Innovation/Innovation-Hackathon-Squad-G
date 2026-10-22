@@ -29,6 +29,7 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- Prompt that worked: "can you make sure everything is pushed, get the latest and then test everything". Pushing, pulling and testing all happen in one request: Claude checked nothing was unshared, brought in main, then ran 138 journeys plus every other route.
 
 ## At 19:00
 - What I worked on: <answers>

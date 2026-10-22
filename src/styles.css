@@ -49,9 +49,8 @@ body {
   background: var(--night); color: var(--night-text); border-bottom: 5px solid var(--spearmint);
   padding: 1.25rem var(--gutter) 1.1rem;
 }
-.app-name { font-weight: 700; font-size: 1.3rem; margin: 0; letter-spacing: -.01em; display: flex; align-items: center; gap: .6rem; }
-/* The Night listener logo (logo.svg) */
-.app-name::before { content: ""; flex: none; width: 2.5rem; height: 2.5rem; background: url("logo.svg") center / contain no-repeat; }
+.app-name { font-weight: 700; font-size: 1.3rem; margin: 0; letter-spacing: -.01em; }
+.app-name::before { content: "☾ "; content: "☾ " / ""; color: var(--spearmint); }
 .tagline { margin: .1rem 0 0; color: var(--night-muted); }
 
 .prototype-note {
@@ -242,3 +241,18 @@ body.lite .privacy, body.lite .service { box-shadow: none; }
 .advice summary { cursor: pointer; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; padding: .25rem 0; }
 .advice-sources { font-size: .85rem; color: var(--muted); margin: .75rem 0 0; }
 .advice-sources a { color: var(--accent); }
+
+/* Naloxone, one step at a time */
+.naloxone-button { margin: 1rem 0; border-left-color: var(--danger); font-weight: 700; }
+.naloxone-top { display: grid; gap: .75rem; margin: 1rem 0; }
+.toggle { display: flex; gap: .5rem; align-items: center; font-weight: 600; }
+.toggle input { width: 1.4rem; height: 1.4rem; accent-color: var(--accent); }
+.naloxone-step {
+  font-size: 1.5rem; line-height: 1.4; font-weight: 600; color: var(--heading);
+  background: var(--surface); border: 1px solid var(--border); border-left: 5px solid var(--spearmint);
+  border-radius: var(--radius); padding: 1.25rem; margin: 1rem 0; box-shadow: var(--shadow);
+}
+.timer { font-size: 2rem; font-weight: 700; text-align: center; margin: .5rem 0; font-variant-numeric: tabular-nums; }
+.step-nav { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.5rem 0; }
+.step-nav .button { text-align: center; }
+.step-nav .button:only-child { grid-column: 1 / -1; }

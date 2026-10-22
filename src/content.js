@@ -37,6 +37,58 @@ window.CONTENT = {
     ],
     after: "You did the right thing. When things are calmer, come back here for support.",
     continueLabel: "Find support for later",
+    naloxoneButton: "Show me how to give naloxone",
+  },
+
+  // Talking someone through naloxone, one step at a time. From Crew, We Are With You and the
+  // medicine leaflets (sources below). Checked 22 October 2026. Keep each step short.
+  naloxone: {
+    heading: "Which naloxone do you have?",
+    intro: "If you haven't yet, call 999 first. Put your phone on speaker.",
+    call: "Call 999",
+    readAloud: "Read the steps out loud",
+    stepOf: "Step {n} of {total}",
+    next: "Next step",
+    previous: "Previous step",
+    finished: "Back to the 999 screen",
+    timer: "Start a 2-minute timer",
+    timerLeft: "Time left: {time}",
+    timerDone: "2 minutes are up. If they haven't woken up, give another dose.",
+    sourcesLabel: "Where these steps are from:",
+    kits: {
+      injection: {
+        label: "An injection (a syringe and needles)",
+        name: "Injection",
+        steps: [
+          { text: "Make sure it's safe to go to them. Call 999 and ask for an ambulance." },
+          { text: "Open the kit. Put a needle on the syringe, the way the picture in the kit shows." },
+          { text: "Inject into the outside of their thigh or upper arm. You can go through their clothes." },
+          { text: "Push the plunger down to the first black line. That's one dose." },
+          { text: "Put them in the recovery position: on their side, with their head tilted back. Stay with them." },
+          { text: "Wait 2 to 3 minutes. If they haven't woken up, give another dose, down to the next line. Keep going until they wake up or the ambulance comes.", timer: true },
+          { text: "Naloxone wears off in 20 to 30 minutes, and they can slip back into overdose. Stay with them until the ambulance comes. If they stop breathing, tell the 999 call handler: they'll talk you through what to do." },
+        ],
+      },
+      spray: {
+        label: "A nasal spray",
+        name: "Nasal spray",
+        steps: [
+          { text: "Make sure it's safe to go to them. Call 999 and ask for an ambulance." },
+          { text: "Lay them on their back. Support their neck and tilt their head back." },
+          { text: "Take one spray out of the pack. Don't test it: each spray has only one dose." },
+          { text: "Put the nozzle into one nostril. Press the plunger firmly until it clicks." },
+          { text: "Put them in the recovery position: on their side, with their head tilted back. Stay with them." },
+          { text: "Wait 2 to 3 minutes. If they haven't woken up, use a new spray in the other nostril.", timer: true },
+          { text: "Naloxone wears off in 20 to 30 minutes, and they can slip back into overdose. Stay with them until the ambulance comes. If they stop breathing, tell the 999 call handler: they'll talk you through what to do." },
+        ],
+      },
+    },
+    sources: [
+      { label: "Crew: naloxone", url: "https://www.crew.scot/drug/naloxone/" },
+      { label: "We Are With You: injection", url: "https://wearewithyou.org.uk/advice-and-information/advice-for-you/how-to-use-naloxone-prenoxad" },
+      { label: "We Are With You: nasal spray", url: "https://www.wearewithyou.org.uk/help-and-advice/safer-injecting/how-use-naloxone-nasal-spray-nyxoid/" },
+      { label: "Nasal spray leaflet (medicines.org.uk)", url: "https://www.medicines.org.uk/emc/product/9292/pil" },
+    ],
   },
 
   who: {
