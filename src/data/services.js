@@ -5,6 +5,7 @@
 // "to" can go past 24 for overnight, e.g. from 20 to 30 means 8pm to 6am.
 // who: me, someone, worker. needs: talk, safer, cut-down, somewhere, family.
 // anonymous: true if you can use it without giving your name.
+// forFamily: true if it's just for family and friends. Shown to them whatever they need.
 // town: for places you go to in person (a town in places.js). Phone and online services have no town.
 
 window.DATA = {
@@ -22,6 +23,7 @@ window.DATA = {
     },
     {
       name: "Circle Families Line (example)",
+      forFamily: true,
       what: "For family and friends. Talk through what is happening and what you can do.",
       contact: { phone: "0808 157 0202", chat: "#" },
       hours: [
@@ -141,6 +143,41 @@ window.DATA = {
       needs: ["somewhere"],
       lowData: true,
       area: "All of Scotland",
+    },
+    {
+      name: "Scottish Families Affected by Alcohol and Drugs",
+      forFamily: true,
+      what: "Free, confidential helpline for family and friends. At weekends, you can ask for a call back.",
+      contact: { phone: "08080 10 10 11", chat: "https://www.sfad.org.uk" },
+      hours: [{ days: [1, 2, 3, 4, 5], from: 9, to: 23 }],
+      who: ["someone"],
+      needs: ["talk", "family", "cut-down", "safer", "somewhere"],
+      lowData: true,
+      area: "All of Scotland",
+    },
+    {
+      name: "Families Night Chat (example)",
+      forFamily: true,
+      anonymous: true,
+      what: "Chat online with other families who've been there. Every evening.",
+      contact: { chat: "#" },
+      hours: [{ days: [0, 1, 2, 3, 4, 5, 6], from: 19, to: 24 }],
+      who: ["someone"],
+      needs: ["talk", "family"],
+      lowData: false,
+      area: "All of Scotland",
+    },
+    {
+      name: "Circle Families Group (example)",
+      forFamily: true,
+      anonymous: true,
+      what: "A weekly group for family and friends. Tea, a chat and people who understand.",
+      contact: { visit: "Community Hall, Example Road, Glasgow" },
+      hours: [{ days: [2, 4], from: 18, to: 20 }],
+      who: ["someone"],
+      needs: ["talk", "family"],
+      lowData: true,
+      town: "Glasgow",
     },
   ],
 

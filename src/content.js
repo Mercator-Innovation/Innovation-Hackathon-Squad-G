@@ -86,6 +86,8 @@ window.CONTENT = {
     showLater: "Show places that are closed for longer",
     noneOpen: "Nothing near you is open right now. These are there for you at any time:",
     allDayHeading: "Open all day and night",
+    familyHeading: "Support for you, too",
+    familyIntro: "Caring about someone who uses drugs or alcohol is hard. These are just for family and friends.",
     allDay: "Open all day and night",
     textWordTo: "to",
     companionHeading: "Want to talk it through?",
