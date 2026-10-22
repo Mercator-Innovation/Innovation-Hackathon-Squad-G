@@ -245,6 +245,67 @@ window.CONTENT = {
     hiddenNote: "Low battery mode is on, so web chats and online-only help are hidden.",
   },
 
+  // Steps people can take themselves, shown above the services for these two needs.
+  // "me" is for the person themselves; "them" is for anyone helping someone else.
+  // Every step comes from a source listed below it. Checked 22 October 2026.
+  advice: {
+    heading: "Things you can do now",
+    more: "More steps",
+    sourcesLabel: "Where this advice is from:",
+    safer: {
+      me: [
+        "Don't use alone. Have someone with you who can help if something goes wrong.",
+        "If you use with other people, take turns. Then someone is always able to help.",
+        "Don't mix drugs, or drugs and alcohol. Mixing makes an overdose more likely.",
+        "Carry naloxone. It's free and you don't need a prescription. Get it from a pharmacy, a drug service, or by post from Scottish Families.",
+        "Use less than you think you need. Be very careful with tablets you don't know, or anything that seems stronger than usual.",
+        "After a break, like prison, hospital, rehab or a detox, your body can't take as much. Use much less than before.",
+        "If someone won't wake up, call 999 and give naloxone. Stay with them. Even if they come round, they still need an ambulance.",
+      ],
+      them: [
+        "Ask them not to use alone. Someone nearby can help if something goes wrong.",
+        "If they use with other people, ask them to take turns, so someone is always able to help.",
+        "Mixing drugs, or drugs and alcohol, makes an overdose more likely.",
+        "Get naloxone for them, and for you. It's free, you don't need a prescription, and anyone can use it to save a life.",
+        "After a break, like prison, hospital, rehab or a detox, their body can't take as much. Ask them to use much less than before.",
+        "If they won't wake up, call 999 and give naloxone. Stay with them. Even if they come round, they still need an ambulance.",
+      ],
+      sources: [
+        { label: "NHS inform", url: "https://www.nhsinform.scot/healthy-living/drugs-and-drug-use/what-you-need-to-know-about-taking-drugs/" },
+        { label: "Scottish Drugs Forum", url: "https://sdf.org.uk/raised-concern-after-rise-in-sudden-overdoses-in-people-using-heroin-in-scotland/" },
+        { label: "NHS Ayrshire & Arran drug alert", url: "https://engagementea.east-ayrshire.gov.uk/eastayrshireadp/news_feed/nhs-ayrshire-2" },
+        { label: "Inverclyde public health alert", url: "https://www.inverclyde.gov.uk/news/2021/may/inverclyde-public-health-alert-potential-drug-deaths-cluster" },
+        { label: "NHS Borders drug death briefing", url: "https://www.nhsborders.scot.nhs.uk/media/1056350/Drug-death-briefing-2025.pdf" },
+        { label: "East Lothian Council: naloxone", url: "https://www.eastlothian.gov.uk/health-and-social-care/access-substance-use-support/substance-use-support/naloxone-distribution-and-training" },
+      ],
+    },
+    "cut-down": {
+      me: [
+        "If you drink every day, or feel shaky, sweaty or sick when you stop, don't stop suddenly on your own. Talk to a GP, a service or NHS 24 on 111 first.",
+        "For drugs like heroin, a service can help you start treatment, often on the same day.",
+        "Make a plan before you start: how much, and how much money.",
+        "Cut back a little at a time.",
+        "Tell someone you trust, so they can back you up.",
+        "Have some days off each week. Try smaller or weaker drinks, with water in between.",
+        "If you've cut down and then use again, your body can't take as much. Use much less than before.",
+      ],
+      them: [
+        "If they drink every day, or feel shaky, sweaty or sick when they stop, they shouldn't stop suddenly on their own. A GP, a service or NHS 24 on 111 can help first.",
+        "For drugs like heroin, a service can help them start treatment, often on the same day.",
+        "Help them make a plan: how much, and how much money.",
+        "Cutting back a little at a time is fine.",
+        "Let them know you're there to back them up.",
+        "If they've cut down and then use again, their body can't take as much. Ask them to use much less than before.",
+      ],
+      sources: [
+        { label: "NHS Tayside: cutting down", url: "https://www.nhstayside.scot.nhs.uk/OurServicesA-Z/PublicHealth/PROD_381777" },
+        { label: "NHS alcohol leaflet (Lancashire)", url: "https://lancsteachinghospitals.nhs.uk//media/.leaflets/66867f23583db4.40384334.pdf" },
+        { label: "Scottish Government: treatment standards", url: "https://gov.scot/publications/medication-assisted-treatment-mat-standards-scotland-access-choice-support/pages/6" },
+        { label: "NHS Borders drug death briefing", url: "https://www.nhsborders.scot.nhs.uk/media/1056350/Drug-death-briefing-2025.pdf" },
+      ],
+    },
+  },
+
   // The language menu. Translations live in content-sco.js and content-gd.js.
   language: {
     label: "Language",

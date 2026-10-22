@@ -229,3 +229,16 @@ body.lite .privacy, body.lite .service { box-shadow: none; }
 }
 .language-note { margin: .6rem 0 0; font-size: .9rem; color: var(--night-text); }
 .language-note:empty { margin: 0; }
+
+/* "Things you can do now" */
+.advice {
+  background: var(--surface); border: 1px solid var(--border); border-left: 5px solid var(--spearmint);
+  border-radius: var(--radius); padding: .25rem 1.15rem 1rem; margin: 1.5rem 0; box-shadow: var(--shadow);
+}
+.advice h2 { margin-top: 1rem; }
+.advice ol { padding-left: 1.4rem; margin: .5rem 0; }
+.advice li { margin-bottom: .6rem; }
+.advice details { margin: .25rem 0 .5rem; }
+.advice summary { cursor: pointer; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; padding: .25rem 0; }
+.advice-sources { font-size: .85rem; color: var(--muted); margin: .75rem 0 0; }
+.advice-sources a { color: var(--accent); }

@@ -476,6 +476,28 @@
         main.append(el("p", { class: "meta", text: C.lite.hiddenNote }),
           saveNumbers(open.concat(soon, anyTime)));
       }
+      // Steps people can take themselves, for "use more safely" and "cut down or stop".
+      var advice = C.advice[answers.need];
+      if (advice) {
+        var steps = advice[answers.who === "me" ? "me" : "them"];
+        var SHOWN = 4;
+        var stepItem = function (text) { return el("li", { text: text }); };
+        main.append(el("section", { class: "advice", "aria-labelledby": "advice-heading" }, [
+          el("h2", { id: "advice-heading", text: C.advice.heading }),
+          el("ol", {}, steps.slice(0, SHOWN).map(stepItem)),
+          steps.length > SHOWN ? el("details", {}, [
+            el("summary", { text: C.advice.more }),
+            el("ol", { start: String(SHOWN + 1) }, steps.slice(SHOWN).map(stepItem)),
+          ]) : null,
+          el("p", { class: "advice-sources" }, [document.createTextNode(C.advice.sourcesLabel + " ")].concat(
+            advice.sources.reduce(function (list, src, i) {
+              if (i) list.push(document.createTextNode(", "));
+              list.push(el("a", { href: src.url, text: src.label }));
+              return list;
+            }, []))),
+        ]));
+      }
+
       main.append(el("h2", { text: C.results.openHeading }));
       if (open.length) {
         open.forEach(function (s) { main.append(serviceCard(s, "open", t)); });
