@@ -196,6 +196,8 @@ window.CONTENT = {
     startAgain: "Start again",
     lowData: "Works with low data",
     noName: "No name needed",
+    checked: "Last checked",
+    source: "Where this is from",
     near: "Near",
     milesAway: "miles away",
     lessThanAMile: "Less than a mile away",

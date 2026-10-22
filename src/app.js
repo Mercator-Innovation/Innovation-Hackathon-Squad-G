@@ -534,6 +534,11 @@
       el("p", { text: s.what }),
       placeText(s) ? el("p", { class: "meta", text: placeText(s) + (s.lowData ? " · " + C.results.lowData : "") }) : null,
       ways.length ? el("div", { class: "ways" }, ways) : null,
+      // Real services say when we checked them and where the details come from.
+      s.checked ? el("p", { class: "checked" }, [
+        document.createTextNode(C.results.checked + " " + s.checked + (s.checkedNote ? " (" + s.checkedNote + ")" : "") + ". "),
+        el("a", { href: s.source, text: C.results.source }),
+      ]) : null,
     ]);
   }
 
