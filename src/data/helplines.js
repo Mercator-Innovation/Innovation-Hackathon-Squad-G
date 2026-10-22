@@ -2,12 +2,14 @@
 // always: true  → shown every time, in "Open all day and night".
 // always: false → shown only when nothing else is open (the "if nothing is open" list).
 // status: optional words to use instead of "Open all day and night".
+// anonymous: true if you can use it without giving your name.
 // town: only shown when the person is near that town.
 // needs: talk, safer, cut-down, somewhere, family ("all" for everything).
 
 window.HELPLINES = [
   {
     name: "Samaritans",
+    anonymous: true,
     what: "Free, any time, about anything. You don't have to be in crisis.",
     contact: { phone: "116 123" },
     needs: ["all"],
@@ -15,7 +17,8 @@ window.HELPLINES = [
   },
   {
     name: "Shout",
-    what: "Free text service, any time. A trained volunteer usually replies within 5 minutes.",
+    anonymous: true,
+    what: "Free text service, any time. A trained volunteer usually replies within 5 minutes. If they think you're in danger right now, they may share your details to get you help.",
     contact: { textWord: "SHOUT", text: "85258" },
     needs: ["talk", "family", "cut-down"],
     always: true,

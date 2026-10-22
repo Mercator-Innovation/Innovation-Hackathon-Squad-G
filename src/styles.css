@@ -114,3 +114,14 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
   cursor: pointer; color: var(--accent); text-decoration: underline;
   font-weight: 600; padding: .5rem 0; margin-bottom: .5rem;
 }
+
+/* Privacy promise and "No name needed" */
+.privacy {
+  margin: 2rem 0 1rem; padding: 1rem;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.privacy h2 { margin-top: 0; font-size: 1.125rem; }
+.privacy h2::before { content: "🔒 "; }
+.privacy ul { margin: 0; padding-left: 1.25rem; }
+.no-name { font-size: .95rem; font-weight: 600; margin: .25rem 0; }
+.no-name::before { content: "👤 "; }
