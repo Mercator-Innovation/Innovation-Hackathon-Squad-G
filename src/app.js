@@ -106,12 +106,16 @@
     return { name: townName, lat: towns[townName].lat, lng: towns[townName].lng };
   }
 
-  // Is there any in-person place (with a town) for this person's situation?
+  // Is there an in-person place (with a town) for this person's situation that's open now
+  // or opens within 2 hours? If not, there's no point asking where they are.
   function hasPlacesToVisit() {
+    var t = currentTime();
     return services.concat(window.HELPLINES).some(function (s) {
       if (!s.town) return false;
       if (s.who && s.who.indexOf(answers.who) === -1) return false;
-      return s.needs.indexOf("all") !== -1 || s.needs.indexOf(answers.need) !== -1;
+      if (s.needs.indexOf("all") === -1 && s.needs.indexOf(answers.need) === -1) return false;
+      if (!s.hours) return true;                     // helplines never close
+      return isOpen(s, t) || nextOpening(s, t).minutes <= SOON_MINUTES;
     });
   }
 
