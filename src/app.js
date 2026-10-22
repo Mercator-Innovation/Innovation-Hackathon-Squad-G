@@ -162,6 +162,7 @@
   // so screen readers announce the question (not on first load, or when the time control changes).
   function show(screen, remember, moveFocus) {
     if (remember !== false && history[history.length - 1] !== screen) history.push(screen);
+    if (screen !== "naloxoneSteps") stopTimer();
     main.innerHTML = "";
     screens[screen]();
     var heading = main.querySelector("h1");
@@ -249,7 +250,102 @@
     ]);
   }
 
+  // ---- Naloxone, one step at a time ----
+
+  var naloxoneKit = null, naloxoneStep = 0, readAloud = false, timerId = null;
+
+  function stopTimer() { if (timerId) { clearInterval(timerId); timerId = null; } }
+
+  function say(text) {
+    if (!readAloud || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+  }
+
+  // The 999 button and the read-aloud switch stay on every naloxone screen.
+  function naloxoneTop() {
+    var toggle = el("label", { class: "toggle" }, [el("input", { type: "checkbox" }), document.createTextNode(" " + C.naloxone.readAloud)]);
+    var box = toggle.querySelector("input");
+    box.checked = readAloud;
+    box.addEventListener("change", function () {
+      readAloud = box.checked;
+      if (!readAloud && "speechSynthesis" in window) window.speechSynthesis.cancel();
+      var step = main.querySelector(".naloxone-step");
+      if (readAloud && step) say(step.textContent);
+    });
+    return el("div", { class: "naloxone-top" }, [
+      el("a", { class: "button danger", href: "tel:999", text: C.naloxone.call }),
+      toggle,
+    ]);
+  }
+
+  function naloxoneSources() {
+    return el("p", { class: "advice-sources" }, [document.createTextNode(C.naloxone.sourcesLabel + " ")].concat(
+      C.naloxone.sources.reduce(function (list, src, i) {
+        if (i) list.push(document.createTextNode(", "));
+        list.push(el("a", { href: src.url, text: src.label }));
+        return list;
+      }, [])));
+  }
+
   var screens = {
+    naloxone: function () {
+      stopTimer();
+      main.append(
+        backButton(),
+        el("h1", { text: C.naloxone.heading }),
+        el("p", { text: C.naloxone.intro }),
+        naloxoneTop(),
+        el("ul", { class: "choices" }, Object.keys(C.naloxone.kits).map(function (id) {
+          return el("li", {}, [el("button", { class: "button", type: "button", text: C.naloxone.kits[id].label,
+            onclick: function () { naloxoneKit = id; naloxoneStep = 0; show("naloxoneSteps"); } })]);
+        })),
+        naloxoneSources()
+      );
+    },
+
+    naloxoneSteps: function () {
+      stopTimer();
+      var kit = C.naloxone.kits[naloxoneKit];
+      var step = kit.steps[naloxoneStep];
+      var total = kit.steps.length;
+      var last = naloxoneStep === total - 1;
+      var timerText = el("p", { class: "timer", "aria-hidden": "true" });
+      var timerDone = el("p", { class: "message", role: "status" });
+
+      // (filter out the timer parts on steps that don't have one)
+      main.append.apply(main, [
+        backButton(),
+        el("h1", { text: kit.name + ": " + C.naloxone.stepOf.replace("{n}", naloxoneStep + 1).replace("{total}", total) }),
+        naloxoneTop(),
+        el("p", { class: "naloxone-step", text: step.text }),
+        step.timer ? el("button", { class: "button", type: "button", text: C.naloxone.timer, onclick: function () {
+          var left = 120;
+          stopTimer();
+          timerDone.textContent = "";
+          var tick = function () {
+            timerText.textContent = C.naloxone.timerLeft.replace("{time}", Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0"));
+            if (left <= 0) { stopTimer(); timerText.textContent = ""; timerDone.textContent = C.naloxone.timerDone; say(C.naloxone.timerDone); }
+            left--;
+          };
+          tick();
+          timerId = setInterval(tick, 1000);
+        } }) : null,
+        step.timer ? timerText : null,
+        step.timer ? timerDone : null,
+        el("div", { class: "step-nav" }, [
+          naloxoneStep > 0 ? el("button", { class: "button", type: "button", text: C.naloxone.previous,
+            onclick: function () { naloxoneStep--; show("naloxoneSteps", false); } }) : null,
+          last
+            ? el("button", { class: "button primary", type: "button", text: C.naloxone.finished, onclick: function () { show("emergency"); } })
+            : el("button", { class: "button primary", type: "button", text: C.naloxone.next,
+                onclick: function () { naloxoneStep++; show("naloxoneSteps", false); } }),
+        ]),
+        naloxoneSources(),
+      ].filter(Boolean));
+      say(step.text);
+    },
+
     numbers: function () {
       var t = currentTime();
       var always = window.HELPLINES.filter(function (h) { return h.always; });
@@ -292,6 +388,7 @@
         el("p", { text: C.emergency.intro }),
         el("a", { class: "button danger", href: "tel:999", text: C.emergency.callLabel }),
         el("ol", { class: "steps" }, C.emergency.steps.map(function (s) { return el("li", { text: s }); })),
+        el("button", { class: "button naloxone-button", type: "button", text: C.emergency.naloxoneButton, onclick: function () { show("naloxone"); } }),
         el("p", { text: C.emergency.after }),
         el("button", { class: "button", type: "button", text: C.emergency.continueLabel, onclick: function () { show("who"); } })
       );
