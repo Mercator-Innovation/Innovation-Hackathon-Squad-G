@@ -49,8 +49,9 @@ body {
   background: var(--night); color: var(--night-text); border-bottom: 5px solid var(--spearmint);
   padding: 1.25rem var(--gutter) 1.1rem;
 }
-.app-name { font-weight: 700; font-size: 1.3rem; margin: 0; letter-spacing: -.01em; }
-.app-name::before { content: "☾ "; content: "☾ " / ""; color: var(--spearmint); }
+.app-name { font-weight: 700; font-size: 1.3rem; margin: 0; letter-spacing: -.01em; display: flex; align-items: center; gap: .6rem; }
+/* The Night listener logo (logo.svg) */
+.app-name::before { content: ""; flex: none; width: 2.5rem; height: 2.5rem; background: url("logo.svg") center / contain no-repeat; }
 .tagline { margin: .1rem 0 0; color: var(--night-muted); }
 
 .prototype-note {
