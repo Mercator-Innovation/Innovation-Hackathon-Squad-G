@@ -135,6 +135,19 @@ window.COMPANION = {
       ],
     },
     {
+      // Before "struggling", so "not bad" isn't read as "bad".
+      id: "notbad",
+      words: ["not bad", "not too bad", "not so bad", "not that bad"],
+      replies: [
+        "That's good to hear.",
+        "I'm here if anything changes. Is there anything you'd like to talk about?",
+      ],
+      again: [
+        "Glad things are OK.",
+        "I'm here if you want to keep talking.",
+      ],
+    },
+    {
       id: "struggling",
       words: ["struggling", "craving", "cravings", "using", "drinking", "relapse", "slipped", "can't stop", "cant stop", "bad", "awful", "hard"],
       replies: [
