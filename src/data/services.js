@@ -5,7 +5,9 @@
 // "to" can go past 24 for overnight, e.g. from 20 to 30 means 8pm to 6am.
 // who: me, someone, worker. needs: talk, safer, cut-down, somewhere, family.
 // anonymous: true if you can use it without giving your name.
+// checked, source: for real services, when we last checked and where the details come from.
 // forFamily: true if it's just for family and friends. Shown to them whatever they need.
+// topics: for "Someone to talk to": drinking, drugs, low. No topics means it suits anything.
 // town: for places you go to in person (a town in places.js). Phone and online services have no town.
 
 window.DATA = {
@@ -121,6 +123,8 @@ window.DATA = {
     },
     {
       name: "Breathing Space",
+      checked: "22 October 2026",
+      source: "https://breathingspace.scot",
       what: "Free, confidential phone line if you're feeling low or anxious. For anyone over 16.",
       contact: { phone: "0800 83 85 87" },
       hours: [
@@ -131,11 +135,14 @@ window.DATA = {
       ],
       who: ["me", "someone"],
       needs: ["talk", "family"],
+      topics: ["low"],
       lowData: true,
       area: "All of Scotland",
     },
     {
       name: "Shelter Scotland housing helpline",
+      checked: "22 October 2026",
+      source: "https://scotland.shelter.org.uk",
       what: "Free advice if you're homeless or might lose your home.",
       contact: { phone: "0808 800 444" },
       hours: [{ days: [1, 2, 3, 4, 5], from: 9, to: 17 }],
@@ -146,12 +153,15 @@ window.DATA = {
     },
     {
       name: "Scottish Families Affected by Alcohol and Drugs",
+      checked: "22 October 2026",
+      source: "https://www.sfad.org.uk",
       forFamily: true,
       what: "Free, confidential helpline for family and friends. At weekends, you can ask for a call back.",
       contact: { phone: "08080 10 10 11", chat: "https://www.sfad.org.uk" },
       hours: [{ days: [1, 2, 3, 4, 5], from: 9, to: 23 }],
       who: ["someone"],
       needs: ["talk", "family", "cut-down", "safer", "somewhere"],
+      topics: ["drinking", "drugs"],
       lowData: true,
       area: "All of Scotland",
     },
@@ -178,6 +188,20 @@ window.DATA = {
       needs: ["talk", "family"],
       lowData: true,
       town: "Glasgow",
+    },
+    {
+      name: "Drinkline",
+      checked: "22 October 2026",
+      // Hours from GP practice and NHS Grampian pages, not Drinkline's own site. Older listings differ.
+      source: "https://www.nhsgrampian.org/your-health/healthy-living/alcohol/",
+      what: "Free, confidential helpline if you're worried about your drinking.",
+      contact: { phone: "0800 7 314 314" },
+      hours: [{ days: [0, 1, 2, 3, 4, 5, 6], from: 8, to: 23 }],
+      who: ["me"],
+      needs: ["talk", "cut-down"],
+      topics: ["drinking"],
+      lowData: true,
+      area: "All of Scotland",
     },
   ],
 

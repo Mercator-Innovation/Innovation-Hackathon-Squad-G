@@ -2,13 +2,13 @@
 // The words live in content.js and the services in data/services.js.
 
 (function () {
-  var C = window.CONTENT;
+  var C = window.CONTENT;   // the words on screen; changes when someone picks a language
   var services = window.DATA.services;
   var main = document.getElementById("main");
   var pretendSelect = document.getElementById("pretend-time");
 
   // What the person has chosen so far, and the screens they have seen (for Back).
-  var answers = { who: null, need: null, where: null };
+  var answers = { who: null, need: null, topic: null, where: null };
   var MAX_MILES = 30;
   var SOON_MINUTES = 120;   // "Opening in the next 2 hours"
   var history = [];
@@ -108,13 +108,33 @@
 
   // Is there an in-person place (with a town) for this person's situation that's open now
   // or opens within 2 hours? If not, there's no point asking where they are.
+  // Does this service suit who the help is for? For someone they don't know, show what that
+  // person could use themselves, or with a friend's help. Not family-only or workers-only support.
+  function whoFits(s) {
+    if (!s.who) return true;
+    if (answers.who === "stranger") return !s.forFamily && (s.who.indexOf("me") !== -1 || s.who.indexOf("someone") !== -1);
+    return s.who.indexOf(answers.who) !== -1;
+  }
+
+  // Does it suit what they need? "I'm not sure" means everything.
+  function needFits(s) {
+    var need = answers.need === "any" || s.needs.indexOf("all") !== -1 || s.needs.indexOf(answers.need) !== -1;
+    return need && topicFits(s);
+  }
+
+  // "Someone to talk to": does it suit what's on their mind? Services with no topics suit anything.
+  function topicFits(s) {
+    if (answers.need !== "talk" || !answers.topic || answers.topic === "unsure" || !s.topics) return true;
+    return s.topics.indexOf(answers.topic) !== -1;
+  }
+
   function hasPlacesToVisit() {
     var t = currentTime();
     return services.concat(window.HELPLINES).some(function (s) {
       if (!s.town) return false;
-      if (s.who && s.who.indexOf(answers.who) === -1) return false;
+      if (!whoFits(s)) return false;
       var forThem = s.forFamily && answers.who === "someone";
-      if (!forThem && s.needs.indexOf("all") === -1 && s.needs.indexOf(answers.need) === -1) return false;
+      if (!forThem && !needFits(s)) return false;
       if (!s.hours) return true;                     // helplines never close
       return isOpen(s, t) || nextOpening(s, t).minutes <= SOON_MINUTES;
     });
@@ -172,6 +192,12 @@
   // Once we know what they need: only ask where they are if there's somewhere to go in person for this.
   function pickNeed(id) {
     answers.need = id;
+    answers.topic = null;
+    if (id === "talk") { show("topic"); return; }   // ask what's on their mind first
+    afterNeed();
+  }
+
+  function afterNeed() {
     if (hasPlacesToVisit()) { show("where"); } else { answers.where = null; show("results"); }
   }
 
@@ -334,8 +360,19 @@
       main.append(
         backButton(),
         el("h1", { text: C.need[answers.who].heading }),
-        el("p", { class: "meta", text: C.need.hint }),
+        el("p", { class: "meta", text: C.need[answers.who].hint || C.need.hint }),
         choiceList(C.need[answers.who].options, pickNeed)
+      );
+    },
+
+    // After "Someone to talk to": what's on their mind, so we show the right helplines.
+    topic: function () {
+      var words = answers.who === "me" ? C.topic.me : C.topic.them;
+      main.append(
+        backButton(),
+        el("h1", { text: words.heading }),
+        el("p", { class: "meta", text: C.topic.hint }),
+        choiceList(words.options, function (id) { answers.topic = id; afterNeed(); })
       );
     },
 
@@ -398,7 +435,7 @@
     results: function () {
       var t = currentTime();
       var matches = services.filter(function (s) {
-        if (s.who.indexOf(answers.who) === -1 || s.needs.indexOf(answers.need) === -1) return false;
+        if (!whoFits(s) || !needFits(s)) return false;
         if (lite && !usableInLite(s)) return false;    // low battery: no web chat
         if (!s.town) return true;                      // phone and online: anywhere
         var d = distanceTo(s);
@@ -419,7 +456,7 @@
 
       // Help that never closes. If nothing else is open, show the fuller list (A&E, the council…).
       var anyTime = window.HELPLINES.filter(function (h) {
-        if (h.needs.indexOf("all") === -1 && h.needs.indexOf(answers.need) === -1) return false;
+        if (!needFits(h)) return false;
         if (!h.always && open.length) return false;
         if (!h.town) return true;
         var d = distanceTo(h);
@@ -444,6 +481,7 @@
       } else {
         main.append(el("p", { text: C.results.noneOpen }));
         anyTime.forEach(function (h) { main.append(serviceCard(h, "allday", t)); });
+        countGap(t);
       }
       if (soon.length) {
         main.append(el("h2", { text: C.results.soonHeading }));
@@ -488,7 +526,7 @@
       ]));
       main.append(el("button", {
         class: "button primary", type: "button", text: C.results.startAgain,
-        onclick: function () { answers = { who: null, need: null, where: null }; history = []; show("start"); },
+        onclick: function () { answers = { who: null, need: null, topic: null, where: null }; history = []; show("start"); },
       }));
     },
   };
@@ -520,6 +558,11 @@
       el("p", { text: s.what }),
       placeText(s) ? el("p", { class: "meta", text: placeText(s) + (s.lowData ? " · " + C.results.lowData : "") }) : null,
       ways.length ? el("div", { class: "ways" }, ways) : null,
+      // Real services say when we checked them and where the details come from.
+      s.checked ? el("p", { class: "checked" }, [
+        document.createTextNode(C.results.checked + " " + s.checked + (s.checkedNote ? " (" + s.checkedNote + ")" : "") + ". "),
+        el("a", { href: s.source, text: C.results.source }),
+      ]) : null,
     ]);
   }
 
@@ -530,12 +573,74 @@
     return s.town + ", " + (d < 1 ? C.results.lessThanAMile.toLowerCase() : Math.round(d) + " " + C.results.milesAway);
   }
 
+  // ---- Gaps: counting when nothing is open, for services (gaps.html) ----
+  // A real service would send this anonymous count to a shared store: area, day, time band, need.
+  // No names, no exact location. The prototype sends and saves nothing: it only logs it here.
+
+  function timeBand(t) {
+    var h = t.hour;
+    if (h >= 18 && h < 22) return "6pm to 10pm";
+    if (h >= 22 || h < 2) return "10pm to 2am";
+    if (h < 6) return "2am to 6am";
+    return (t.day === 0 || t.day === 6) ? "Weekend daytime" : "Weekday daytime";
+  }
+
+  function countGap(t) {
+    var gap = {
+      area: answers.where ? answers.where.name : "Not given",
+      day: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][t.day],
+      band: timeBand(t),
+      who: answers.who,
+      need: answers.need,
+    };
+    console.info("Gap counted (prototype: not sent or saved)", gap);
+  }
+
+  // ---- Languages: English underneath, with any translated words on top ----
+
+  function mergeWords(english, translated) {
+    if (translated === undefined) return english;
+    if (typeof english !== "object" || english === null || Array.isArray(english)) return translated;
+    var out = {};
+    Object.keys(english).forEach(function (k) { out[k] = mergeWords(english[k], translated[k]); });
+    return out;
+  }
+
+  var languageSelect = document.getElementById("language");
+  var languageNote = document.getElementById("language-note");
+
+  function drawHeader() {
+    document.getElementById("app-name").textContent = C.appName;
+    document.getElementById("tagline").textContent = C.tagline;
+    document.getElementById("prototype-note").textContent = C.prototypeNote;
+    document.getElementById("pretend-label").textContent = C.timeControl;
+    document.getElementById("language-label").textContent = C.language.label;
+  }
+
+  function setLanguage(code) {
+    var info = window.LANGUAGES.find(function (l) { return l.code === code; });
+    var words = window.TRANSLATIONS[code];
+    var translated = code === "en" || (words && Object.keys(words).length > 0);
+    C = code === "en" ? window.CONTENT : mergeWords(window.CONTENT, words || {});
+    // Only say the page is in Scots or Gaelic once there are real translations.
+    document.documentElement.lang = translated ? info.lang : "en-GB";
+    languageNote.hidden = translated;
+    languageNote.textContent = C.language.notYet;
+    drawHeader();
+    drawLiteButton();
+  }
+
+  window.LANGUAGES.forEach(function (l) {
+    languageSelect.append(el("option", { value: l.code, lang: l.lang, text: l.name }));
+  });
+  languageSelect.addEventListener("change", function () {
+    setLanguage(languageSelect.value);
+    show(history[history.length - 1] || "start", false, false);
+  });
+
   // ---- Start up ----
 
-  document.getElementById("app-name").textContent = C.appName;
-  document.getElementById("tagline").textContent = C.tagline;
-  document.getElementById("prototype-note").textContent = C.prototypeNote;
-  document.getElementById("pretend-label").textContent = C.timeControl;
+  drawHeader();
   window.DATA.pretendTimes.forEach(function (t) {
     pretendSelect.append(el("option", { value: t.id, text: t.label }));
   });

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Where help runs out – for services</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="gaps.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <p class="app-name">For services and Alcohol and Drug Partnerships</p>
+    <p class="tagline">See where and when people find nothing open.</p>
+  </header>
+
+  <p class="prototype-note">Prototype. All the numbers on this page are made up.</p>
+
+  <main id="main" tabindex="-1" class="gaps">
+    <a class="back" href="index.html">‹ Back to the app</a>
+    <h1>Where help runs out</h1>
+    <p>Each time someone uses the app and nothing near them is open, we count it. This shows where, when and what for, so services can plan cover together.</p>
+
+    <div class="tiles" id="tiles"></div>
+
+    <h2 id="grid-heading">When and where</h2>
+    <p class="meta">Number of times nothing was open. Darker means more.</p>
+    <div class="table-wrap" id="grid"></div>
+
+    <h2>What people were looking for</h2>
+    <div id="needs"></div>
+
+    <h2>Who the help was for</h2>
+    <div id="who"></div>
+
+    <section class="how" aria-labelledby="how-heading">
+      <h2 id="how-heading">How we count</h2>
+      <ul>
+        <li>We only count when nothing near someone was open.</li>
+        <li>We record the area, the day, the time band and what they needed.</li>
+        <li>We never record names, phone numbers or exact locations.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="data/gaps.js"></script>
+  <script src="gaps.js"></script>
+</body>
+</html>
