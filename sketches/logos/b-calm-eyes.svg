@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="A calm white speech bubble with gently closed, listening eyes">
+  <circle cx="50" cy="50" r="48" fill="#a3401f"/>
+  <g transform="rotate(-6 50 50)">
+    <path d="M40 24h20a20 20 0 0 1 20 20v4a20 20 0 0 1-20 20H46l-14 12 2-12.6A20 20 0 0 1 20 48v-4a20 20 0 0 1 20-20z" fill="#fff"/>
+    <path d="M37.5 44q4.5 4 9 0M53.5 44q4.5 4 9 0" fill="none" stroke="#a3401f" stroke-width="3" stroke-linecap="round"/>
+    <path d="M46 53q4 3 8 0" fill="none" stroke="#a3401f" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>
