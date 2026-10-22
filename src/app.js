@@ -169,6 +169,12 @@
     }));
   }
 
+  // Once we know what they need: only ask where they are if there's somewhere to go in person for this.
+  function pickNeed(id) {
+    answers.need = id;
+    if (hasPlacesToVisit()) { show("where"); } else { answers.where = null; show("results"); }
+  }
+
   var screens = {
     start: function () {
       main.append(
@@ -202,7 +208,59 @@
       main.append(
         backButton(),
         el("h1", { text: C.who.heading }),
-        choiceList(C.who.options, function (id) { answers.who = id; show("need"); })
+        choiceList(C.who.options, function (id) {
+          answers.who = id;
+          show(id === "someone" ? "family" : "need");   // family and friends get their own first step
+        })
+      );
+    },
+
+    // Family and friends: what's going on for them, before the usual "what do you need?".
+    family: function () {
+      main.append(
+        backButton(),
+        el("h1", { text: C.family.heading }),
+        el("p", { text: C.family.intro }),
+        choiceList(C.family.options, function (id) {
+          if (id === "overdose") show("overdose");
+          else if (id === "tonight") show("tonight");
+          else if (id === "for-me") pickNeed("family");
+          else show("need");
+        })
+      );
+    },
+
+    overdose: function () {
+      main.append(
+        backButton(),
+        el("h1", { text: C.overdose.heading }),
+        el("p", { text: C.overdose.intro }),
+        el("ul", {}, C.overdose.signs.map(function (s) { return el("li", { text: s }); })),
+        el("a", { class: "button danger", href: "tel:999", text: C.overdose.callLabel }),
+        el("h2", { text: C.overdose.doHeading }),
+        el("ol", { class: "steps" }, C.emergency.steps.map(function (s) { return el("li", { text: s }); })),
+        el("h2", { text: C.overdose.dontHeading }),
+        el("ul", {}, C.overdose.donts.map(function (s) { return el("li", { text: s }); })),
+        el("h2", { text: C.overdose.naloxoneHeading }),
+        el("p", { text: C.overdose.naloxone }),
+        el("button", { class: "button", type: "button", text: C.overdose.next, onclick: function () { pickNeed("family"); } })
+      );
+    },
+
+    tonight: function () {
+      main.append(
+        backButton(),
+        el("h1", { text: C.tonight.heading }),
+        el("p", { text: C.tonight.intro }),
+        el("ol", { class: "steps" }, C.tonight.steps.map(function (s) { return el("li", { text: s }); })),
+        el("button", { class: "back", type: "button", text: C.tonight.overdoseLink, onclick: function () { show("overdose"); } }),
+        el("h2", { text: C.tonight.tomorrowHeading }),
+        el("ul", {}, C.tonight.tomorrow.map(function (s) { return el("li", { text: s }); })),
+        el("p", { class: "meta", text: C.tonight.checkNote }),
+        el("ul", { class: "choices" }, [
+          el("li", {}, [el("button", { class: "button primary", type: "button", text: C.tonight.forMe, onclick: function () { pickNeed("family"); } })]),
+          el("li", {}, [el("button", { class: "button", type: "button", text: C.tonight.forThem, onclick: function () { show("need"); } })]),
+        ])
       );
     },
 
@@ -211,11 +269,7 @@
         backButton(),
         el("h1", { text: C.need.heading }),
         el("p", { class: "meta", text: C.need.hint }),
-        choiceList(C.need.options, function (id) {
-          answers.need = id;
-          // Only ask where they are if there's somewhere to go in person for this.
-          if (hasPlacesToVisit()) { show("where"); } else { answers.where = null; show("results"); }
-        })
+        choiceList(C.need.options, pickNeed)
       );
     },
 

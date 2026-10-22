@@ -48,6 +48,68 @@ window.CONTENT = {
     ],
   },
 
+  // Family and friends: shown when "Someone I care about" is picked, before anything else.
+  family: {
+    heading: "What's happening?",
+    intro: "It's hard when someone you care about is using. You're not on your own.",
+    options: [
+      { id: "overdose", label: "I'm worried they might overdose" },
+      { id: "tonight", label: "I don't know what to do or say" },
+      { id: "for-me", label: "I need support for me" },
+      { id: "for-them", label: "Find help for them" },
+    ],
+  },
+
+  // Signs and steps from NHS Scotland overdose advice (NHS Borders leaflet, East Ayrshire
+  // naloxone campaign) and Public Health Scotland. Checked 22 October 2026: check again before relying on it.
+  overdose: {
+    heading: "Signs of an overdose",
+    intro: "If you see any of these, call 999 straight away. Don't wait to be sure.",
+    signs: [
+      "They won't wake up, or you can't get a response.",
+      "Their breathing is slow, shallow or stops.",
+      "They're snoring or making gurgling sounds.",
+      "Their lips or skin look blue, grey or pale.",
+      "Their pupils are very small, like pinpoints.",
+    ],
+    callLabel: "Call 999",
+    doHeading: "While you wait for the ambulance",
+    // The steps are the same as the emergency screen (emergency.steps), so they always match.
+    dontHeading: "Don't",
+    donts: [
+      "Don't leave them on their own.",
+      "Don't walk them around or put them in a cold bath.",
+      "Don't give them other drugs or alcohol to bring them round.",
+    ],
+    naloxoneHeading: "Get naloxone, just in case",
+    naloxone: "Naloxone can reverse an opioid overdose for a short time. It won't harm someone who hasn't taken opioids. Scottish Families can post you a kit, and many pharmacies have them. Ask how to use it.",
+    next: "Find support for me",
+  },
+
+  // General advice for family and friends. Not yet checked by a specialist:
+  // check it with Scottish Families Affected by Alcohol and Drugs before relying on it.
+  tonight: {
+    heading: "What you can do tonight",
+    intro: "There's no perfect thing to say. These can help.",
+    steps: [
+      "If you're worried about their safety, check the signs of an overdose.",
+      "Try to stay calm. Arguing while they're using rarely helps.",
+      "Keep them, and you, safe. It's OK to step away if you need to.",
+      "Talk properly tomorrow, when you're both calmer.",
+      "Look after yourself tonight too. Eat, rest and talk to someone.",
+    ],
+    tomorrowHeading: "When you talk tomorrow",
+    tomorrow: [
+      "Pick a calm time, when they're not using.",
+      "Say how you feel, for example \"I'm worried about you\", not \"You always…\".",
+      "Listen more than you talk. You don't have to fix it all at once.",
+    ],
+    checkNote: "This is general advice. Scottish Families can talk it through with you.",
+    overdoseLink: "Signs of an overdose",
+    forMe: "Find support for me",
+    forThem: "Find help for them",
+  },
+
   need: {
     heading: "What do you need right now?",
     hint: "Pick what fits. You can change it.",
