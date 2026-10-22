@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talk it through</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="companion.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <p class="app-name">Find support</p>
+    <p class="tagline">Day or night. No judgement.</p>
+  </header>
+
+  <p class="prototype-note" id="prototype-note"></p>
+
+  <!-- Always on screen, so a real person is one tap away -->
+  <aside class="safety-bar" aria-label="Urgent help">
+    <p id="safety-text"></p>
+    <div class="safety-actions">
+      <a class="safety-999" href="tel:999" id="safety-999"></a>
+      <a class="safety-sam" href="tel:116123" id="safety-sam"></a>
+    </div>
+  </aside>
+
+  <main id="main" tabindex="-1">
+    <a class="back" href="index.html" id="back-link"></a>
+    <h1 id="title"></h1>
+    <p id="intro"></p>
+
+    <div class="voice-controls">
+      <label class="toggle"><input type="checkbox" id="read-aloud" checked> <span id="read-aloud-label"></span></label>
+    </div>
+
+    <div class="chat" id="chat" role="log" aria-live="polite" aria-relevant="additions"></div>
+    <div class="quick-replies" id="quick-replies"></div>
+
+    <form class="chat-form" id="chat-form" autocomplete="off">
+      <label for="message" id="message-label"></label>
+      <div class="chat-row">
+        <input type="text" id="message" name="message">
+        <button type="submit" class="button primary send" id="send"></button>
+      </div>
+      <button type="button" class="button mic" id="mic" aria-pressed="false"></button>
+      <p class="meta" id="mic-note"></p>
+    </form>
+  </main>
+
+  <script src="data/companion.js"></script>
+  <script src="companion.js"></script>
+</body>
+</html>
