@@ -24,7 +24,6 @@ body {
   font-family: var(--font);
   font-size: 1.125rem;
   line-height: 1.5;
-  padding-bottom: 5rem; /* room for the prototype controls */
 }
 
 .skip-link { position: absolute; left: -999px; }
@@ -77,8 +76,8 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
 .status { font-weight: 700; font-size: .95rem; }
 .status.open { color: var(--open); }
 .status.closed { color: var(--closed); }
-.status.open::before { content: "● "; }
-.status.closed::before { content: "○ "; }
+.status.open::before { content: "● "; content: "● " / ""; }
+.status.closed::before { content: "○ "; content: "○ " / ""; }
 .meta { color: var(--muted); font-size: .95rem; }
 .ways { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
 .ways a, .ways span {
@@ -88,7 +87,7 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
 .ways a:hover { background: #eaf1f8; }
 
 .prototype-controls {
-  position: fixed; bottom: 0; left: 0; right: 0;
+  margin-top: 2rem;
   background: #1f2328; color: #fff; padding: .6rem 1rem;
   display: flex; gap: .5rem; align-items: center; justify-content: center; flex-wrap: wrap;
   font-size: .95rem;
@@ -108,7 +107,7 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
 
 /* "Opening in the next 2 hours" and closed for longer */
 .status.soon { color: #7a4b00; }
-.status.soon::before { content: "◐ "; }
+.status.soon::before { content: "◐ "; content: "◐ " / ""; }
 .later { margin: 1.5rem 0 1rem; }
 .later summary {
   cursor: pointer; color: var(--accent); text-decoration: underline;
@@ -121,7 +120,16 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
 }
 .privacy h2 { margin-top: 0; font-size: 1.125rem; }
-.privacy h2::before { content: "🔒 "; }
+.privacy h2::before { content: "🔒 "; content: "🔒 " / ""; }
 .privacy ul { margin: 0; padding-left: 1.25rem; }
 .no-name { font-size: .95rem; font-weight: 600; margin: .25rem 0; }
-.no-name::before { content: "👤 "; }
+.no-name::before { content: "👤 "; content: "👤 " / ""; }
+
+/* Error next to the box it's about */
+.field-error:empty { display: none; }
+.field-error { margin: 0; color: var(--danger); font-weight: 700; }
+.field-error::before { content: "⚠ "; content: "⚠ " / ""; }
+.where-form input[aria-invalid="true"] { border-color: var(--danger); border-width: 3px; }
+
+/* Headings get focus only so screen readers announce them; they are not controls */
+h1[tabindex="-1"]:focus { outline: none; box-shadow: none; }

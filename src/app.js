@@ -124,11 +124,18 @@
     return node;
   }
 
-  function show(screen, remember) {
+  // Draw a screen. The page title names the step, and focus moves to the new heading
+  // so screen readers announce the question (not on first load, or when the time control changes).
+  function show(screen, remember, moveFocus) {
     if (remember !== false && history[history.length - 1] !== screen) history.push(screen);
     main.innerHTML = "";
     screens[screen]();
-    main.focus();
+    var heading = main.querySelector("h1");
+    document.title = heading.textContent + " – " + C.appName;
+    if (moveFocus !== false) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus();
+    }
   }
 
   function backButton() {
@@ -213,16 +220,24 @@
       });
 
       var input = el("input", { id: "where-input", type: "text", autocomplete: "postal-code", "aria-describedby": "where-hint" });
-      var form = el("form", { class: "where-form" }, [
+      var error = el("p", { id: "where-error", class: "field-error" });
+      var form = el("form", { class: "where-form", novalidate: "" }, [
         el("label", { for: "where-input", text: C.where.typeLabel }),
         el("p", { id: "where-hint", class: "meta", text: C.where.typeHint }),
+        error,
         input,
         el("button", { class: "button primary", type: "submit", text: C.where.typeButton }),
       ]);
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var place = findPlace(input.value);
-        if (!place) { message.textContent = C.where.notFound; input.focus(); return; }
+        if (!place) {
+          error.textContent = C.where.notFound;
+          input.setAttribute("aria-invalid", "true");
+          input.setAttribute("aria-describedby", "where-hint where-error");
+          input.focus();
+          return;
+        }
         answers.where = place;
         show("results");
       });
@@ -361,8 +376,8 @@
     pretendSelect.append(el("option", { value: t.id, text: t.label }));
   });
   pretendSelect.addEventListener("change", function () {
-    if (history[history.length - 1] === "results") show("results", false);
+    if (history[history.length - 1] === "results") show("results", false, false);
   });
 
-  show("start");
+  show("start", true, false);
 })();
