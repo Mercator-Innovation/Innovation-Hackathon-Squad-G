@@ -457,6 +457,7 @@
       } else {
         main.append(el("p", { text: C.results.noneOpen }));
         anyTime.forEach(function (h) { main.append(serviceCard(h, "allday", t)); });
+        countGap(t);
       }
       if (soon.length) {
         main.append(el("h2", { text: C.results.soonHeading }));
@@ -541,6 +542,29 @@
     var d = distanceTo(s);
     if (d === null) return s.town;
     return s.town + ", " + (d < 1 ? C.results.lessThanAMile.toLowerCase() : Math.round(d) + " " + C.results.milesAway);
+  }
+
+  // ---- Gaps: counting when nothing is open, for services (gaps.html) ----
+  // A real service would send this anonymous count to a shared store: area, day, time band, need.
+  // No names, no exact location. The prototype sends and saves nothing: it only logs it here.
+
+  function timeBand(t) {
+    var h = t.hour;
+    if (h >= 18 && h < 22) return "6pm to 10pm";
+    if (h >= 22 || h < 2) return "10pm to 2am";
+    if (h < 6) return "2am to 6am";
+    return (t.day === 0 || t.day === 6) ? "Weekend daytime" : "Weekday daytime";
+  }
+
+  function countGap(t) {
+    var gap = {
+      area: answers.where ? answers.where.name : "Not given",
+      day: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][t.day],
+      band: timeBand(t),
+      who: answers.who,
+      need: answers.need,
+    };
+    console.info("Gap counted (prototype: not sent or saved)", gap);
   }
 
   // ---- Start up ----
