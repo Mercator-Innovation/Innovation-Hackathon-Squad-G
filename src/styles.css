@@ -1,29 +1,29 @@
-/* The look: "community café" with spearmint. Change the colours and fonts here. */
+/* The look: "sage and stone", calm and quiet. Change the colours and fonts here. */
 :root {
-  --night: #2b2b2b;         /* the header band: charcoal */
+  --night: #2f4a40;         /* the header band: deep sage */
   --night-text: #ffffff;
   --night-muted: #d9d4c8;
-  --bg: #f6f1e7;            /* oat */
+  --bg: #f2f5f1;            /* soft stone */
   --surface: #ffffff;
   --text: #262626;
   --heading: #1f1f1f;
   --muted: #575047;
-  --accent: #1d6b52;        /* deep spearmint: buttons and links */
-  --accent-soft: #dff3ea;   /* spearmint tint for hovers */
-  --accent-dark: #145240;   /* button hover */
-  --spearmint: #7fd1b0;     /* bright spearmint: small touches only */
+  --accent: #356b57;        /* sage: buttons and links */
+  --accent-soft: #e2efe8;   /* sage tint for hovers */
+  --accent-dark: #275343;   /* button hover */
+  --spearmint: #a9d4bf;     /* pale sage: small touches only */
   --accent-text: #ffffff;
-  --danger: #b00020;        /* the 999 button */
-  --open: #1d6b3a;          /* "Open now" */
-  --open-soft: #e3f4ea;
-  --soon: #7a4b00;          /* "Opens in 1 hour" */
-  --soon-soft: #fff1d6;
+  --danger: #a8323a;        /* the 999 button: a calmer red */
+  --open: #2e6b4f;          /* "Open now" */
+  --open-soft: #e6f2ec;
+  --soon: #6b5300;          /* "Opens in 1 hour" */
+  --soon-soft: #fbf3dc;
   --closed: #575047;
   --closed-soft: #ece6da;
   --focus: #ffbf47;
-  --border: #e2dacb;
-  --radius: 14px;
-  --shadow: 0 1px 2px rgba(60, 45, 20, .06), 0 4px 14px rgba(60, 45, 20, .07);
+  --border: #d8e2db;
+  --radius: 20px;
+  --shadow: 0 1px 3px rgba(30, 40, 60, .05), 0 6px 20px rgba(30, 40, 60, .06);
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --gutter: max(1rem, calc((100% - 38rem) / 2));   /* keeps content in a 38rem column */
 }
@@ -83,7 +83,7 @@ h2 { font-size: 1.25rem; margin: 2rem 0 .75rem; color: var(--heading); }
 .button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); text-align: center; }
 .button.primary:hover { background: var(--accent-dark); }
 .button.danger { background: var(--danger); border-color: var(--danger); color: #fff; text-align: center; font-size: 1.2rem; }
-.button.danger:hover { background: #8f001a; }
+.button.danger:hover { background: #8a2830; }
 .choices .button.danger { text-align: left; border-left-color: var(--danger); }
 .choices .button.danger::after { color: #fff; }
 
@@ -256,3 +256,9 @@ body.lite .privacy, body.lite .service { box-shadow: none; }
 .step-nav { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.5rem 0; }
 .step-nav .button { text-align: center; }
 .step-nav .button:only-child { grid-column: 1 / -1; }
+
+/* Calm spacing: more room to breathe between choices and cards */
+body { line-height: 1.65; }
+h1 { font-weight: 600; margin: 1.25rem 0 1.25rem; }
+.choices { gap: 1rem; margin: 1.75rem 0; }
+.service { margin-bottom: 1.25rem; padding: 1.4rem 1.5rem; }
