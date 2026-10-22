@@ -94,3 +94,14 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
   font-size: .95rem;
 }
 .prototype-controls select { font: inherit; padding: .25rem; }
+
+/* "Where are you?" */
+.where-form { margin: 1.5rem 0; display: grid; gap: .5rem; }
+.where-form label { font-weight: 700; }
+.where-form .meta { margin: 0; }
+.where-form input {
+  font: inherit; padding: .75rem; width: 100%;
+  border: 2px solid var(--text); border-radius: var(--radius); background: var(--surface);
+}
+.message:empty { display: none; }
+.message { font-weight: 600; }
