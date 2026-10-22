@@ -48,16 +48,39 @@ window.CONTENT = {
     ],
   },
 
+  // The question and options change to match who the help is for (me, someone, worker).
   need: {
-    heading: "What do you need right now?",
     hint: "Pick what fits. You can change it.",
-    options: [
-      { id: "talk", label: "Someone to talk to" },
-      { id: "safer", label: "Ways to use more safely" },
-      { id: "cut-down", label: "Help to cut down or stop" },
-      { id: "somewhere", label: "Somewhere safe to be tonight" },
-      { id: "family", label: "Support for me, as family or a friend" },
-    ],
+    me: {
+      heading: "What do you need right now?",
+      options: [
+        { id: "talk", label: "Someone to talk to" },
+        { id: "safer", label: "Ways to use more safely" },
+        { id: "cut-down", label: "Help to cut down or stop" },
+        { id: "somewhere", label: "Somewhere safe to be tonight" },
+        { id: "family", label: "Support for my family or friends" },
+      ],
+    },
+    someone: {
+      heading: "What would help most right now?",
+      options: [
+        { id: "talk", label: "Someone for them to talk to" },
+        { id: "safer", label: "Ways for them to use more safely" },
+        { id: "cut-down", label: "Help for them to cut down or stop" },
+        { id: "somewhere", label: "Somewhere safe for them tonight" },
+        { id: "family", label: "Support for me, as their family or friend" },
+      ],
+    },
+    worker: {
+      heading: "What does the person you support need right now?",
+      options: [
+        { id: "talk", label: "Someone for them to talk to" },
+        { id: "safer", label: "Ways for them to use more safely" },
+        { id: "cut-down", label: "Help for them to cut down or stop" },
+        { id: "somewhere", label: "Somewhere safe for them tonight" },
+        { id: "family", label: "Support for their family or friends" },
+      ],
+    },
   },
 
   where: {
