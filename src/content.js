@@ -48,6 +48,20 @@ window.CONTENT = {
     ],
   },
 
+  where: {
+    heading: "Where are you?",
+    intro: "So we can show places you can get to.",
+    useLocation: "Use my location",
+    useLocationWhy: "We use this only to find places near you. We don't save it.",
+    finding: "Finding where you are…",
+    locationFailed: "We couldn't get your location. You can type a town or postcode instead.",
+    typeLabel: "Type a town or postcode",
+    typeHint: "For example, Greenock or PA15",
+    typeButton: "Find places near here",
+    notFound: "We couldn't find that place. Try a nearby town, or skip this.",
+    skip: "Skip this. Show me phone and online help",
+  },
+
   results: {
     heading: "Here is who can help",
     openNow: "Open now",
@@ -57,6 +71,11 @@ window.CONTENT = {
     noneOpen: "Nobody on this list is open right now. NHS 24 on 111 is open all night if you need to talk to someone about your health.",
     startAgain: "Start again",
     lowData: "Works with low data",
+    near: "Near",
+    milesAway: "miles away",
+    lessThanAMile: "Less than a mile away",
+    tooFarNote: "Places more than 30 miles away are not shown.",
+    changeLocation: "Change where you are",
     ways: { phone: "Call", text: "Text", chat: "Web chat", visit: "Drop in" },
   },
 

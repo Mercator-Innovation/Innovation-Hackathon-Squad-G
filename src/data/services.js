@@ -3,6 +3,7 @@
 // hours: list of { days: [0-6, Sunday is 0], from: hour, to: hour }.
 // "to" can go past 24 for overnight, e.g. from 20 to 30 means 8pm to 6am.
 // who: me, someone, worker. needs: talk, safer, cut-down, somewhere, family.
+// town: for places you go to in person (a town in places.js). Phone and online services have no town.
 
 window.DATA = {
   services: [
@@ -47,7 +48,7 @@ window.DATA = {
       who: ["me", "someone", "worker"],
       needs: ["safer", "somewhere", "talk"],
       lowData: true,
-      area: "City centre only",
+      town: "Glasgow",
     },
     {
       name: "Local Recovery Service (example)",
@@ -57,7 +58,7 @@ window.DATA = {
       who: ["me", "someone", "worker"],
       needs: ["cut-down", "safer"],
       lowData: true,
-      area: "Your local area",
+      town: "Greenock",
     },
     {
       name: "Safe Stay Night Shelter (example)",
@@ -67,7 +68,7 @@ window.DATA = {
       who: ["me", "worker"],
       needs: ["somewhere"],
       lowData: true,
-      area: "City centre only",
+      town: "Glasgow",
     },
     {
       name: "Reach Out Web Chat (example)",
@@ -88,6 +89,36 @@ window.DATA = {
       needs: ["talk", "safer", "somewhere", "cut-down", "family"],
       lowData: true,
       area: "All of Scotland",
+    },
+    {
+      name: "Clyde Coast Drop-in (example)",
+      what: "Clean equipment, naloxone and someone to talk to. Just turn up.",
+      contact: { phone: "0306 999 0606", visit: "Harbour Road, Greenock" },
+      hours: [{ days: [1, 3, 5], from: 12, to: 20 }],
+      who: ["me", "someone", "worker"],
+      needs: ["safer", "talk"],
+      lowData: true,
+      town: "Greenock",
+    },
+    {
+      name: "Capital Night Café (example)",
+      what: "A warm café run by people in recovery. Open late at weekends.",
+      contact: { visit: "Example Lane, Edinburgh" },
+      hours: [{ days: [0, 5, 6], from: 19, to: 25 }],
+      who: ["me", "someone"],
+      needs: ["talk", "safer", "somewhere"],
+      lowData: true,
+      town: "Edinburgh",
+    },
+    {
+      name: "Highland Recovery Café (example)",
+      what: "Tea, peer support and help to cut down. Daytime only.",
+      contact: { phone: "0306 999 0707", visit: "Example Street, Inverness" },
+      hours: [{ days: [2, 3, 4, 5, 6], from: 10, to: 16 }],
+      who: ["me", "someone", "worker"],
+      needs: ["talk", "cut-down", "family"],
+      lowData: true,
+      town: "Inverness",
     },
   ],
 

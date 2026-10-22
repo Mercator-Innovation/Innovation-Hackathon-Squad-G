@@ -8,7 +8,8 @@
   var pretendSelect = document.getElementById("pretend-time");
 
   // What the person has chosen so far, and the screens they have seen (for Back).
-  var answers = { who: null, need: null };
+  var answers = { who: null, need: null, where: null };
+  var MAX_MILES = 30;
   var history = [];
 
   // ---- Time: real or pretend ----
@@ -53,6 +54,48 @@
     if (h === 0) return "midnight";
     if (h === 12) return "midday";
     return h < 12 ? h + "am" : (h - 12) + "pm";
+  }
+
+  // ---- Location: worked out on this device, never saved ----
+
+  function milesBetween(a, b) {
+    var rad = Math.PI / 180;
+    var dLat = (b.lat - a.lat) * rad;
+    var dLng = (b.lng - a.lng) * rad;
+    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 3959 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+  }
+
+  function nearestTown(point) {
+    var best = null;
+    Object.keys(window.PLACES.towns).forEach(function (name) {
+      var d = milesBetween(point, window.PLACES.towns[name]);
+      if (!best || d < best.d) best = { name: name, d: d };
+    });
+    return best.name;
+  }
+
+  // A town name ("greenock") or postcode ("PA15 1AB", "PA15", "G1") to a place, or null.
+  function findPlace(typed) {
+    var towns = window.PLACES.towns;
+    var text = typed.trim().toLowerCase();
+    var townName = Object.keys(towns).find(function (n) { return n.toLowerCase() === text; });
+    if (!townName) {
+      var code = typed.toUpperCase().replace(/\s+/g, "");
+      if (/^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/.test(code)) code = code.slice(0, -3); // drop the last part
+      if (/^[A-Z]{1,2}\d[A-Z\d]?$/.test(code) || /^[A-Z]{1,2}$/.test(code)) {
+        var letters = code.match(/^[A-Z]+/)[0];
+        townName = window.PLACES.postcodes[code] || window.PLACES.postcodes[letters];
+      }
+    }
+    if (!townName) return null;
+    return { name: townName, lat: towns[townName].lat, lng: towns[townName].lng };
+  }
+
+  function distanceTo(service) {
+    if (!service.town || !answers.where) return null;
+    return milesBetween(answers.where, window.PLACES.towns[service.town]);
   }
 
   // ---- Drawing screens ----
@@ -129,19 +172,84 @@
         backButton(),
         el("h1", { text: C.need.heading }),
         el("p", { class: "meta", text: C.need.hint }),
-        choiceList(C.need.options, function (id) { answers.need = id; show("results"); })
+        choiceList(C.need.options, function (id) { answers.need = id; show("where"); })
+      );
+    },
+
+    where: function () {
+      var message = el("p", { class: "message", role: "status" });
+      var useButton = el("button", {
+        class: "button", type: "button", text: C.where.useLocation,
+        onclick: function () {
+          if (!navigator.geolocation) { message.textContent = C.where.locationFailed; return; }
+          message.textContent = C.where.finding;
+          navigator.geolocation.getCurrentPosition(function (pos) {
+            var point = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+            answers.where = { name: nearestTown(point), lat: point.lat, lng: point.lng };
+            show("results");
+          }, function () {
+            message.textContent = C.where.locationFailed;
+            input.focus();
+          }, { timeout: 10000, maximumAge: 600000 });
+        },
+      });
+
+      var input = el("input", { id: "where-input", type: "text", autocomplete: "postal-code", "aria-describedby": "where-hint" });
+      var form = el("form", { class: "where-form" }, [
+        el("label", { for: "where-input", text: C.where.typeLabel }),
+        el("p", { id: "where-hint", class: "meta", text: C.where.typeHint }),
+        input,
+        el("button", { class: "button primary", type: "submit", text: C.where.typeButton }),
+      ]);
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var place = findPlace(input.value);
+        if (!place) { message.textContent = C.where.notFound; input.focus(); return; }
+        answers.where = place;
+        show("results");
+      });
+
+      main.append(
+        backButton(),
+        el("h1", { text: C.where.heading }),
+        el("p", { text: C.where.intro }),
+        useButton,
+        el("p", { class: "meta", text: C.where.useLocationWhy }),
+        message,
+        form,
+        el("button", {
+          class: "button", type: "button", text: C.where.skip,
+          onclick: function () { answers.where = null; show("results"); },
+        })
       );
     },
 
     results: function () {
       var t = currentTime();
       var matches = services.filter(function (s) {
-        return s.who.indexOf(answers.who) !== -1 && s.needs.indexOf(answers.need) !== -1;
+        if (s.who.indexOf(answers.who) === -1 || s.needs.indexOf(answers.need) === -1) return false;
+        if (!s.town) return true;                      // phone and online: anywhere
+        var d = distanceTo(s);
+        return d !== null && d <= MAX_MILES;           // in person: only if near enough
+      });
+      // Places you can walk into come first, nearest first; then phone and online.
+      matches.sort(function (a, b) {
+        var da = distanceTo(a), db = distanceTo(b);
+        if (da === null && db === null) return 0;
+        if (da === null) return 1;
+        if (db === null) return -1;
+        return da - db;
       });
       var open = matches.filter(function (s) { return isOpen(s, t); });
       var closed = matches.filter(function (s) { return !isOpen(s, t); });
 
       main.append(backButton(), el("h1", { text: C.results.heading }));
+      if (answers.where) {
+        main.append(el("p", { class: "meta" }, [
+          document.createTextNode(C.results.near + " " + answers.where.name + ". " + C.results.tooFarNote + " "),
+          el("button", { class: "back", type: "button", text: C.results.changeLocation, onclick: function () { show("where"); } }),
+        ]));
+      }
       if (!open.length) main.append(el("p", { text: C.results.noneOpen }));
       open.forEach(function (s) { main.append(serviceCard(s, true, t)); });
       if (closed.length) {
@@ -150,7 +258,7 @@
       }
       main.append(el("button", {
         class: "button primary", type: "button", text: C.results.startAgain,
-        onclick: function () { answers = { who: null, need: null }; history = []; show("start"); },
+        onclick: function () { answers = { who: null, need: null, where: null }; history = []; show("start"); },
       }));
     },
   };
@@ -173,9 +281,16 @@
       el("h3", { text: s.name }),
       status,
       el("p", { text: s.what }),
-      el("p", { class: "meta", text: s.area + (s.lowData ? " · " + C.results.lowData : "") }),
+      el("p", { class: "meta", text: placeText(s) + (s.lowData ? " · " + C.results.lowData : "") }),
       el("div", { class: "ways" }, ways),
     ]);
+  }
+
+  function placeText(s) {
+    if (!s.town) return s.area;
+    var d = distanceTo(s);
+    if (d === null) return s.town;
+    return s.town + ", " + (d < 1 ? C.results.lessThanAMile.toLowerCase() : Math.round(d) + " " + C.results.milesAway);
   }
 
   // ---- Start up ----
