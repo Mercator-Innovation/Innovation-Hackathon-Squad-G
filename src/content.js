@@ -189,6 +189,22 @@ window.CONTENT = {
     ways: { phone: "Call", text: "Text", chat: "Web chat", visit: "Drop in" },
   },
 
+  // Low battery mode: dark, text only, nothing that needs data.
+  lite: {
+    toggle: "Low battery mode",
+    on: "On",
+    off: "Off",
+    numbersButton: "Just show me the numbers",
+    numbersHeading: "Numbers to keep",
+    numbersIntro: "Save these now, in case your battery or signal runs out.",
+    emergency: "Emergency",
+    copy: "Copy these numbers",
+    copied: "Copied. Paste them into your notes.",
+    copyFailed: "Couldn't copy. You can write them down instead.",
+    textMyself: "Text them to myself",
+    hiddenNote: "Low battery mode is on, so web chats and online-only help are hidden.",
+  },
+
   back: "Back",
   timeControl: "Pretend the time is",
 };

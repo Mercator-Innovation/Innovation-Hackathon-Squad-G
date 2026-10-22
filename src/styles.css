@@ -133,3 +133,33 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
 
 /* Headings get focus only so screen readers announce them; they are not controls */
 h1[tabindex="-1"]:focus { outline: none; box-shadow: none; }
+
+/* Low battery mode: dark (uses less battery on most phone screens), plain, no extras */
+.site-header { position: relative; }
+.lite-toggle {
+  margin-top: .5rem; font: inherit; font-size: .95rem; padding: .35rem .75rem;
+  background: var(--surface); color: var(--text);
+  border: 2px solid var(--text); border-radius: 999px; cursor: pointer;
+}
+.lite-toggle[aria-pressed="true"]::before { content: "🔋 "; content: "🔋 " / ""; }
+body.lite {
+  --bg: #000000;
+  --surface: #000000;
+  --text: #ffffff;
+  --muted: #d0d0d0;
+  --accent: #9ecbff;
+  --accent-text: #000000;
+  --open: #7ee2a0;
+  --closed: #c8c8c8;
+  --border: #555555;
+  --danger: #ff6b6b;
+}
+body.lite .prototype-note { background: #222; color: #fff; }
+body.lite .button:hover, body.lite .ways a:hover { background: #1a1a1a; }
+body.lite .button.danger { background: #b00020; border-color: #b00020; color: #fff; }
+body.lite .status.soon { color: #ffd27a; }
+body.lite .privacy, body.lite .service { box-shadow: none; }
+.numbers { list-style: none; padding: 0; display: grid; gap: .5rem; }
+.numbers a { display: block; padding: .75rem; border: 2px solid var(--accent); border-radius: var(--radius); color: var(--accent); font-weight: 600; text-decoration: none; }
+.save-numbers { display: grid; gap: .5rem; margin: 1rem 0; }
+.save-numbers .button { text-align: center; }

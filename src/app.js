@@ -175,7 +175,72 @@
     if (hasPlacesToVisit()) { show("where"); } else { answers.where = null; show("results"); }
   }
 
+  // ---- Low battery mode: kept in memory only, never saved ----
+
+  var lite = false;
+  var liteButton = document.getElementById("lite-toggle");
+
+  function drawLiteButton() {
+    liteButton.textContent = C.lite.toggle + ": " + (lite ? C.lite.on : C.lite.off);
+    liteButton.setAttribute("aria-pressed", String(lite));
+    document.body.classList.toggle("lite", lite);
+  }
+
+  // Phone and text only: web chat needs data.
+  function usableInLite(s) {
+    return s.lowData !== false && (s.contact.phone || s.contact.text || s.contact.visit);
+  }
+
+  // One line per service: "Samaritans: call 116 123".
+  function numberLine(s) {
+    var c = s.contact, parts = [];
+    if (c.phone) parts.push(C.results.ways.phone.toLowerCase() + " " + c.phone);
+    if (c.text) parts.push(C.results.ways.text.toLowerCase() + " " + (c.textWord ? c.textWord + " " + C.results.textWordTo + " " : "") + c.text);
+    return parts.length ? s.name + ": " + parts.join(", ") : null;
+  }
+
+  function numbersText(list) {
+    return [C.lite.emergency + ": call 999"].concat(list.map(numberLine).filter(Boolean)).join("\n");
+  }
+
+  // "Copy these numbers" and "Text them to myself".
+  function saveNumbers(list) {
+    var text = numbersText(list);
+    var note = el("p", { class: "message", role: "status" });
+    return el("div", { class: "save-numbers" }, [
+      el("button", {
+        class: "button", type: "button", text: C.lite.copy,
+        onclick: function () {
+          if (!navigator.clipboard) { note.textContent = C.lite.copyFailed; return; }
+          navigator.clipboard.writeText(text).then(
+            function () { note.textContent = C.lite.copied; },
+            function () { note.textContent = C.lite.copyFailed; });
+        },
+      }),
+      el("a", { class: "button", href: "sms:?&body=" + encodeURIComponent(text), text: C.lite.textMyself }),
+      note,
+    ]);
+  }
+
   var screens = {
+    numbers: function () {
+      var t = currentTime();
+      var always = window.HELPLINES.filter(function (h) { return h.always; });
+      var openNow = services.filter(function (s) { return !s.town && isOpen(s, t) && usableInLite(s); });
+      var list = always.concat(openNow);
+      main.append(
+        backButton(),
+        el("h1", { text: C.lite.numbersHeading }),
+        el("p", { text: C.lite.numbersIntro }),
+        el("ul", { class: "numbers" }, [el("li", {}, [el("a", { href: "tel:999", text: C.lite.emergency + ": 999" })])].concat(
+          list.map(function (s) {
+            var tel = s.contact.phone ? "tel:" + s.contact.phone.replace(/\s/g, "") : "sms:" + s.contact.text;
+            return el("li", {}, [el("a", { href: tel, text: numberLine(s) })]);
+          }))),
+        saveNumbers(list)
+      );
+    },
+
     start: function () {
       main.append(
         el("h1", { text: C.start.heading }),
@@ -184,6 +249,7 @@
         el("ul", { class: "choices" }, [
           el("li", {}, [el("button", { class: "button danger", type: "button", text: C.start.yes, onclick: function () { show("emergency"); } })]),
           el("li", {}, [el("button", { class: "button", type: "button", text: C.start.no, onclick: function () { show("who"); } })]),
+          lite ? el("li", {}, [el("button", { class: "button", type: "button", text: C.lite.numbersButton, onclick: function () { show("numbers"); } })]) : null,
         ]),
         el("section", { class: "privacy", "aria-labelledby": "privacy-heading" }, [
           el("h2", { id: "privacy-heading", text: C.privacy.heading }),
@@ -333,6 +399,7 @@
       var t = currentTime();
       var matches = services.filter(function (s) {
         if (s.who.indexOf(answers.who) === -1 || s.needs.indexOf(answers.need) === -1) return false;
+        if (lite && !usableInLite(s)) return false;    // low battery: no web chat
         if (!s.town) return true;                      // phone and online: anywhere
         var d = distanceTo(s);
         return d !== null && d <= MAX_MILES;           // in person: only if near enough
@@ -366,6 +433,11 @@
           el("button", { class: "back", type: "button", text: C.results.changeLocation, onclick: function () { show("where"); } }),
         ]));
       }
+      // Low battery: offer to save the numbers first, while there's still charge.
+      if (lite) {
+        main.append(el("p", { class: "meta", text: C.lite.hiddenNote }),
+          saveNumbers(open.concat(soon, anyTime)));
+      }
       main.append(el("h2", { text: C.results.openHeading }));
       if (open.length) {
         open.forEach(function (s) { main.append(serviceCard(s, "open", t)); });
@@ -387,6 +459,7 @@
       if (answers.who === "someone") {
         var family = services.filter(function (s) {
           if (!s.forFamily || matches.indexOf(s) !== -1) return false;
+          if (lite && !usableInLite(s)) return false;
           if (!s.town) return true;
           var d = distanceTo(s);
           return d !== null && d <= MAX_MILES;
@@ -407,8 +480,8 @@
         main.append(el("h2", { text: C.results.allDayHeading }));
         anyTime.forEach(function (h) { main.append(serviceCard(h, "allday", t)); });
       }
-      // A voice to talk to while you wait (companion.html).
-      main.append(el("div", { class: "service" }, [
+      // A voice to talk to while you wait (companion.html). Not in low battery mode: it needs data.
+      if (!lite) main.append(el("div", { class: "service" }, [
         el("h2", { text: C.results.companionHeading }),
         el("p", { text: C.results.companionText }),
         el("a", { class: "button", href: "companion.html", text: C.results.companionLink }),
@@ -436,9 +509,9 @@
         return el("a", { href: "sms:" + value + "?&body=" + s.contact.textWord, text: label + " " + s.contact.textWord + " " + C.results.textWordTo + " " + value });
       }
       if (way === "text") return el("a", { href: "sms:" + value, text: label + " " + value });
-      if (way === "chat") return el("a", { href: value, text: label });
+      if (way === "chat") return lite ? null : el("a", { href: value, text: label });
       return el("span", { text: label + ": " + value });
-    });
+    }).filter(Boolean);
 
     return el("section", { class: "service", "aria-label": s.name }, [
       el("h3", { text: s.name }),
@@ -469,6 +542,13 @@
   pretendSelect.addEventListener("change", function () {
     if (history[history.length - 1] === "results") show("results", false, false);
   });
+
+  liteButton.addEventListener("click", function () {
+    lite = !lite;
+    drawLiteButton();
+    show(history[history.length - 1] || "start", false, false);
+  });
+  drawLiteButton();
 
   show("start", true, false);
 })();
