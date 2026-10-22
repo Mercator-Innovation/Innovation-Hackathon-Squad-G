@@ -540,7 +540,10 @@
         return d !== null && d <= MAX_MILES;           // in person: only if near enough
       });
       // Places you can walk into come first, nearest first; then phone and online.
+      // Services made for what's on their mind (e.g. Drinkline for "my drinking") come first.
+      var forTopic = function (s) { return answers.topic && s.topics && s.topics.indexOf(answers.topic) !== -1 ? 0 : 1; };
       matches.sort(function (a, b) {
+        if (forTopic(a) !== forTopic(b)) return forTopic(a) - forTopic(b);
         var da = distanceTo(a), db = distanceTo(b);
         if (da === null && db === null) return 0;
         if (da === null) return 1;
