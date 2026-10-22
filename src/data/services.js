@@ -125,7 +125,9 @@ window.DATA = {
   // Times for the "pretend the time is" control. day: 0-6 (Sunday is 0).
   pretendTimes: [
     { id: "now", label: "Now (real time)" },
+    { id: "mon-08", label: "Monday 8am", day: 1, hour: 8 },
     { id: "tue-11", label: "Tuesday 11am", day: 2, hour: 11 },
+    { id: "fri-17", label: "Friday 5pm", day: 5, hour: 17 },
     { id: "fri-23", label: "Friday 11pm", day: 5, hour: 23 },
     { id: "sun-03", label: "Sunday 3am", day: 0, hour: 3 },
   ],

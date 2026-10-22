@@ -10,6 +10,7 @@
   // What the person has chosen so far, and the screens they have seen (for Back).
   var answers = { who: null, need: null, where: null };
   var MAX_MILES = 30;
+  var SOON_MINUTES = 120;   // "Opening in the next 2 hours"
   var history = [];
 
   // ---- Time: real or pretend ----
@@ -33,7 +34,7 @@
     });
   }
 
-  // The next time a closed service opens, as words like "Monday 9am".
+  // When a closed service next opens: words like "tomorrow at 9am", and minutes from now.
   function nextOpening(service, t) {
     var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     for (var offset = 0; offset < 8; offset++) {
@@ -44,10 +45,22 @@
         .sort(function (a, b) { return a - b; });
       if (starts.length) {
         var when = offset === 0 ? "today" : offset === 1 ? "tomorrow" : dayNames[day];
-        return when + " at " + formatHour(starts[0]);
+        return {
+          words: when + " at " + formatHour(starts[0]),
+          minutes: Math.round((offset * 24 + starts[0] - t.hour) * 60),
+        };
       }
     }
-    return "";
+    return { words: "", minutes: Infinity };
+  }
+
+  // 80 minutes as "1 hour 20 minutes".
+  function formatWait(minutes) {
+    var h = Math.floor(minutes / 60), m = minutes % 60;
+    var parts = [];
+    if (h) parts.push(h + (h === 1 ? " hour" : " hours"));
+    if (m) parts.push(m + (m === 1 ? " minute" : " minutes"));
+    return parts.join(" ");
   }
 
   function formatHour(h) {
@@ -242,6 +255,8 @@
       });
       var open = matches.filter(function (s) { return isOpen(s, t); });
       var closed = matches.filter(function (s) { return !isOpen(s, t); });
+      var soon = closed.filter(function (s) { return nextOpening(s, t).minutes <= SOON_MINUTES; });
+      var later = closed.filter(function (s) { return soon.indexOf(s) === -1; });
 
       main.append(backButton(), el("h1", { text: C.results.heading }));
       if (answers.where) {
@@ -250,11 +265,18 @@
           el("button", { class: "back", type: "button", text: C.results.changeLocation, onclick: function () { show("where"); } }),
         ]));
       }
+      main.append(el("h2", { text: C.results.openHeading }));
       if (!open.length) main.append(el("p", { text: C.results.noneOpen }));
-      open.forEach(function (s) { main.append(serviceCard(s, true, t)); });
-      if (closed.length) {
-        main.append(el("h2", { text: C.results.laterHeading }));
-        closed.forEach(function (s) { main.append(serviceCard(s, false, t)); });
+      open.forEach(function (s) { main.append(serviceCard(s, "open", t)); });
+      if (soon.length) {
+        main.append(el("h2", { text: C.results.soonHeading }));
+        soon.forEach(function (s) { main.append(serviceCard(s, "soon", t)); });
+      }
+      // Closed for longer: hidden until someone asks, so the list stays short.
+      if (later.length) {
+        main.append(el("details", { class: "later" }, [
+          el("summary", { text: C.results.showLater + " (" + later.length + ")" }),
+        ].concat(later.map(function (s) { return serviceCard(s, "later", t); }))));
       }
       main.append(el("button", {
         class: "button primary", type: "button", text: C.results.startAgain,
@@ -263,10 +285,12 @@
     },
   };
 
-  function serviceCard(s, open, t) {
-    var status = open
-      ? el("p", { class: "status open", text: C.results.openNow })
-      : el("p", { class: "status closed", text: C.results.closedNow + ". " + C.results.opensAt + " " + nextOpening(s, t) + "." });
+  function serviceCard(s, state, t) {
+    var next = nextOpening(s, t);
+    var status;
+    if (state === "open") status = el("p", { class: "status open", text: C.results.openNow });
+    else if (state === "soon") status = el("p", { class: "status soon", text: C.results.opensAt + " " + next.words.replace("today at ", "") + ", " + C.results.opensIn + " " + formatWait(next.minutes) + "." });
+    else status = el("p", { class: "status closed", text: C.results.closedNow + ". " + C.results.opensAt + " " + next.words + "." });
 
     var ways = Object.keys(s.contact).map(function (way) {
       var label = C.results.ways[way];
