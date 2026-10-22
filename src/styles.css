@@ -1,0 +1,96 @@
+/* The look. Change the colours and fonts here. */
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --text: #1f2328;
+  --muted: #4a5058;
+  --accent: #2d5f8b;        /* buttons and links */
+  --accent-text: #ffffff;
+  --danger: #b00020;        /* the 999 screen */
+  --open: #1d6b3a;          /* "Open now" */
+  --closed: #5c5f66;        /* "Closed now" */
+  --focus: #ffbf47;
+  --border: #d0d4da;
+  --radius: 10px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  line-height: 1.5;
+  padding-bottom: 5rem; /* room for the prototype controls */
+}
+
+.skip-link { position: absolute; left: -999px; }
+.skip-link:focus { left: 1rem; top: 1rem; background: var(--focus); color: #000; padding: .5rem; z-index: 10; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 0 5px #000; }
+
+.site-header { padding: 1rem; max-width: 40rem; margin: 0 auto; }
+.app-name { font-weight: 700; font-size: 1.25rem; margin: 0; }
+.tagline { margin: 0; color: var(--muted); }
+
+.prototype-note {
+  max-width: 40rem; margin: 0 auto 1rem; padding: .5rem 1rem;
+  font-size: .9rem; background: #fff4cc; border-left: 4px solid #8a6d00;
+}
+
+main { max-width: 40rem; margin: 0 auto; padding: 0 1rem; }
+main:focus { outline: none; }
+
+h1 { font-size: 1.75rem; line-height: 1.2; margin: .5rem 0 1rem; }
+h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
+
+.choices { display: grid; gap: .75rem; margin: 1rem 0; padding: 0; list-style: none; }
+
+.button {
+  display: block; width: 100%; padding: 1rem;
+  font: inherit; font-weight: 600; text-align: left;
+  background: var(--surface); color: var(--text);
+  border: 2px solid var(--accent); border-radius: var(--radius);
+  cursor: pointer; text-decoration: none;
+}
+.button:hover { background: #eaf1f8; }
+.button.primary { background: var(--accent); color: var(--accent-text); text-align: center; }
+.button.danger { background: var(--danger); border-color: var(--danger); color: #fff; text-align: center; font-size: 1.25rem; }
+
+.back {
+  background: none; border: none; color: var(--accent); font: inherit;
+  text-decoration: underline; padding: .25rem 0; cursor: pointer;
+}
+
+.steps { padding-left: 1.25rem; }
+.steps li { margin-bottom: .5rem; }
+
+.service {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem; margin-bottom: .75rem;
+}
+.service h3 { margin: 0 0 .25rem; font-size: 1.125rem; }
+.service p { margin: .25rem 0; }
+.status { font-weight: 700; font-size: .95rem; }
+.status.open { color: var(--open); }
+.status.closed { color: var(--closed); }
+.status.open::before { content: "● "; }
+.status.closed::before { content: "○ "; }
+.meta { color: var(--muted); font-size: .95rem; }
+.ways { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.ways a, .ways span {
+  padding: .4rem .75rem; border-radius: 999px; border: 1px solid var(--accent);
+  color: var(--accent); text-decoration: none; font-size: .95rem;
+}
+.ways a:hover { background: #eaf1f8; }
+
+.prototype-controls {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #1f2328; color: #fff; padding: .6rem 1rem;
+  display: flex; gap: .5rem; align-items: center; justify-content: center; flex-wrap: wrap;
+  font-size: .95rem;
+}
+.prototype-controls select { font: inherit; padding: .25rem; }
