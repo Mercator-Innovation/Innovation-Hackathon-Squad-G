@@ -12,7 +12,13 @@
   <header class="site-header">
     <p class="app-name" id="app-name"></p>
     <p class="tagline" id="tagline"></p>
-    <button type="button" class="lite-toggle" id="lite-toggle" aria-pressed="false"></button>
+    <div class="header-controls">
+      <button type="button" class="lite-toggle" id="lite-toggle" aria-pressed="false"></button>
+      <label class="language-picker"><span id="language-label"></span>
+        <select id="language"></select>
+      </label>
+    </div>
+    <p class="language-note" id="language-note" hidden></p>
   </header>
 
   <aside aria-label="About this prototype">
@@ -30,6 +36,8 @@
   </footer>
 
   <script src="content.js"></script>
+  <script src="content-sco.js"></script>
+  <script src="content-gd.js"></script>
   <script src="data/services.js"></script>
   <script src="data/more-services.js"></script>
   <script src="data/places.js"></script>
