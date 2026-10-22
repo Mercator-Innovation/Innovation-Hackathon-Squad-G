@@ -164,3 +164,7 @@ body.lite .privacy, body.lite .service { box-shadow: none; }
 .numbers a { display: block; padding: .75rem; border: 2px solid var(--accent); border-radius: var(--radius); color: var(--accent); font-weight: 600; text-decoration: none; }
 .save-numbers { display: grid; gap: .5rem; margin: 1rem 0; }
 .save-numbers .button { text-align: center; }
+
+/* "Last checked" on real services */
+.checked { font-size: .9rem; color: var(--muted); margin: .5rem 0 0; }
+.checked a { color: var(--accent); }
