@@ -4,8 +4,8 @@
 
 **Repo:** Innovation-Hackathon-Squad-G
 **Squad name:** Gusto
-**Challenge:** _chosen on the day_
-**Why we chose it:** _(one or two sentences)_
+**Challenge:** Challenge 2: Help when it's needed (connecting people affected by substance use with support, out of hours)
+**Why we chose it:** It has the biggest human impact. Scotland has the highest rates of drug and alcohol deaths in the UK and Europe, and people are often alone at night when help is closed.
 **The idea:** _(one or two sentences, agreed on the day: who it's for, when they need it, and what it does)_
 
 ## Members
