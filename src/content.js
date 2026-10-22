@@ -2,8 +2,8 @@
 // Keep it kind, plain and person-first. Reading age about 9.
 
 window.CONTENT = {
-  appName: "Find support",
-  tagline: "Day or night. No judgement.",
+  appName: "Get the support you need",
+  tagline: "Day or night. Whoever you are.",
   prototypeNote: "Prototype. Services marked (example) are made up. The others are real, but check them before you rely on them.",
 
   start: {
