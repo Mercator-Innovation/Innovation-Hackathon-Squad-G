@@ -29,6 +29,7 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- 18:13 prompt: "here's a scenario: I'm a mother who's kept awake at night, it's 2am... got a son/daughter who I want to help by using this service, what kind of things would you ask and offer help anonymously.  I want to get help for my child and find out what help and resources are available." → Claude walked the prototype as that parent, showed what it already asks and offers, and suggested three gaps (their age, a plan for the morning, a kind closing line). It became scenario A for our show and tell.
 
 ## At 19:00
 - What I worked on: <answers>
