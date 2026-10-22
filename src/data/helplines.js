@@ -19,6 +19,18 @@ window.HELPLINES = [
     always: true,
   },
   {
+    name: "Talk to Frank",
+    checked: "22 October 2026",
+    source: "https://www.talktofrank.com",
+    checkedNote: "it's a UK-wide line, and the 24-hour opening comes from a directory, not Frank's own site",
+    anonymous: true,
+    what: "Honest information about drugs, any time. UK-wide.",
+    contact: { phone: "0300 123 6600" },
+    needs: ["talk"],
+    topics: ["drugs"],
+    always: true,
+  },
+  {
     name: "Shout",
     checked: "22 October 2026",
     source: "https://giveusashout.org",

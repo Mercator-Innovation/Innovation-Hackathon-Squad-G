@@ -8,7 +8,7 @@
   var pretendSelect = document.getElementById("pretend-time");
 
   // What the person has chosen so far, and the screens they have seen (for Back).
-  var answers = { who: null, need: null, where: null };
+  var answers = { who: null, need: null, topic: null, where: null };
   var MAX_MILES = 30;
   var SOON_MINUTES = 120;   // "Opening in the next 2 hours"
   var history = [];
@@ -118,7 +118,14 @@
 
   // Does it suit what they need? "I'm not sure" means everything.
   function needFits(s) {
-    return answers.need === "any" || s.needs.indexOf("all") !== -1 || s.needs.indexOf(answers.need) !== -1;
+    var need = answers.need === "any" || s.needs.indexOf("all") !== -1 || s.needs.indexOf(answers.need) !== -1;
+    return need && topicFits(s);
+  }
+
+  // "Someone to talk to": does it suit what's on their mind? Services with no topics suit anything.
+  function topicFits(s) {
+    if (answers.need !== "talk" || !answers.topic || answers.topic === "unsure" || !s.topics) return true;
+    return s.topics.indexOf(answers.topic) !== -1;
   }
 
   function hasPlacesToVisit() {
@@ -185,6 +192,12 @@
   // Once we know what they need: only ask where they are if there's somewhere to go in person for this.
   function pickNeed(id) {
     answers.need = id;
+    answers.topic = null;
+    if (id === "talk") { show("topic"); return; }   // ask what's on their mind first
+    afterNeed();
+  }
+
+  function afterNeed() {
     if (hasPlacesToVisit()) { show("where"); } else { answers.where = null; show("results"); }
   }
 
@@ -352,6 +365,17 @@
       );
     },
 
+    // After "Someone to talk to": what's on their mind, so we show the right helplines.
+    topic: function () {
+      var words = answers.who === "me" ? C.topic.me : C.topic.them;
+      main.append(
+        backButton(),
+        el("h1", { text: words.heading }),
+        el("p", { class: "meta", text: C.topic.hint }),
+        choiceList(words.options, function (id) { answers.topic = id; afterNeed(); })
+      );
+    },
+
     where: function () {
       var message = el("p", { class: "message", role: "status" });
       var useButton = el("button", {
@@ -502,7 +526,7 @@
       ]));
       main.append(el("button", {
         class: "button primary", type: "button", text: C.results.startAgain,
-        onclick: function () { answers = { who: null, need: null, where: null }; history = []; show("start"); },
+        onclick: function () { answers = { who: null, need: null, topic: null, where: null }; history = []; show("start"); },
       }));
     },
   };
