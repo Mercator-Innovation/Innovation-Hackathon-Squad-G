@@ -29,6 +29,7 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- 16:59 I built a voice companion page that talks and listens, and linked it into the main journey. That's normally a developer's job. It worked: I tested it at phone width and fixed two issues the testing found.
 
 ## At 19:00
 - What I worked on: <answers>

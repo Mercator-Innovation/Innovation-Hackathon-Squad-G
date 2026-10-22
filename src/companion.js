@@ -12,6 +12,8 @@
   var micNote = document.getElementById("mic-note");
 
   var listenTurn = 0;
+  var lastReply = "";      // so the companion never says exactly the same thing twice in a row
+  var topicsUsed = {};     // topics already talked about, so the second time says something new
   var breathingTimer = null;
 
   // ---- Fill in the words ----
@@ -81,6 +83,20 @@
     });
   }
 
+  // Say these lines, unless they're exactly what was said last time: then listen instead.
+  function sayOnce(lines) {
+    var key = lines.join(" ");
+    if (key === lastReply) lines = nextListening();
+    lastReply = lines.join(" ");
+    say(lines);
+  }
+
+  function nextListening() {
+    var lines = C.listening[listenTurn % C.listening.length];
+    listenTurn++;
+    return lines;
+  }
+
   function addActions(links) {
     var row = el("div", { class: "bubble-actions" }, links.map(function (l) {
       return el("a", { class: "button " + (l.style || ""), href: l.href, text: l.text });
@@ -121,13 +137,16 @@
 
     var topic = findTopic(text);
     if (!topic) {
-      say(C.listening[listenTurn % C.listening.length]);
-      listenTurn++;
+      sayOnce(nextListening());
       showQuickReplies(C.quickReplies.next);
       return;
     }
 
-    say(topic.replies);
+    var seenBefore = topicsUsed[topic.id];
+    topicsUsed[topic.id] = true;
+    var lines = seenBefore && topic.again ? topic.again : topic.replies;
+    if (topic.showDanger) { say(lines); lastReply = lines.join(" "); } // danger always repeats 999, however often
+    else sayOnce(lines);
     if (topic.showDanger) {
       addActions([
         { href: "tel:999", text: C.safetyBar.call999, style: "danger" },
