@@ -17,6 +17,9 @@
   // ---- Fill in the words ----
 
   function setText(id, text) { document.getElementById(id).textContent = text; }
+  // The app name and tagline come from content.js, so they match the main journey.
+  setText("app-name", window.CONTENT.appName);
+  setText("tagline", window.CONTENT.tagline);
   setText("prototype-note", C.prototypeNote);
   setText("safety-text", C.safetyBar.text);
   setText("safety-999", C.safetyBar.call999);
@@ -222,5 +225,5 @@
 
   C.greeting.forEach(function (line) { addBubble("companion", line); });
   showQuickReplies(C.quickReplies.start);
-  // Browsers only allow talking after the person has tapped something, so the greeting is read once they do.
+  // Reading out loud starts off, so it doesn't talk over a screen reader. People turn it on if they want it.
 })();

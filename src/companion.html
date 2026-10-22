@@ -11,8 +11,8 @@
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
-    <p class="app-name">Find support</p>
-    <p class="tagline">Day or night. No judgement.</p>
+    <p class="app-name" id="app-name"></p>
+    <p class="tagline" id="tagline"></p>
   </header>
 
   <p class="prototype-note" id="prototype-note"></p>
@@ -32,7 +32,7 @@
     <p id="intro"></p>
 
     <div class="voice-controls">
-      <label class="toggle"><input type="checkbox" id="read-aloud" checked> <span id="read-aloud-label"></span></label>
+      <label class="toggle"><input type="checkbox" id="read-aloud"> <span id="read-aloud-label"></span></label>
     </div>
 
     <div class="chat" id="chat" role="log" aria-live="polite" aria-relevant="additions"></div>
@@ -49,6 +49,7 @@
     </form>
   </main>
 
+  <script src="content.js"></script>
   <script src="data/companion.js"></script>
   <script src="companion.js"></script>
 </body>
