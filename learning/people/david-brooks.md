@@ -29,6 +29,7 @@ ai_use_week_after:
 
 ## During
 <!-- Claude adds one line per moment: prompts that worked (word for word), dead ends, surprises, things done outside my usual job, what made working as a squad easier or harder -->
+- 17:54 prompt: "If someone chooses 'someone to talk to' then can we breakdown which helplines are best for what problem?" → Claude offered three designs; I chose a new "What's on your mind?" question. It researched real Scottish helplines with sources, left out one it couldn't confirm, and built the step and shared it.
 
 ## At 19:00
 - What I worked on: <answers>

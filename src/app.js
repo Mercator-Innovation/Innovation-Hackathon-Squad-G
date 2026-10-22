@@ -487,12 +487,6 @@
         main.append(el("h2", { text: C.results.soonHeading }));
         soon.forEach(function (s) { main.append(serviceCard(s, "soon", t)); });
       }
-      // Closed for longer: hidden until someone asks, so the list stays short.
-      if (later.length) {
-        main.append(el("details", { class: "later" }, [
-          el("summary", { text: C.results.showLater + " (" + later.length + ")" }),
-        ].concat(later.map(function (s) { return serviceCard(s, "later", t); }))));
-      }
       // Family and friends get their own support too, whatever they picked.
       if (answers.who === "someone") {
         var family = services.filter(function (s) {
@@ -517,6 +511,12 @@
       if (open.length && anyTime.length) {
         main.append(el("h2", { text: C.results.allDayHeading }));
         anyTime.forEach(function (h) { main.append(serviceCard(h, "allday", t)); });
+      }
+      // Closed for longer: hidden until someone asks, so the list stays short.
+      if (later.length) {
+        main.append(el("details", { class: "later" }, [
+          el("summary", { text: C.results.showLater + " (" + later.length + ")" }),
+        ].concat(later.map(function (s) { return serviceCard(s, "later", t); }))));
       }
       // A voice to talk to while you wait (companion.html). Not in low battery mode: it needs data.
       if (!lite) main.append(el("div", { class: "service" }, [
