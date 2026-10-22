@@ -45,6 +45,7 @@ window.CONTENT = {
       { id: "me", label: "Me" },
       { id: "someone", label: "Someone I care about" },
       { id: "worker", label: "Someone I support through my work" },
+      { id: "stranger", label: "Someone I don't know, who needs help" },
     ],
   },
 
@@ -121,6 +122,7 @@ window.CONTENT = {
         { id: "cut-down", label: "Help to cut down or stop" },
         { id: "somewhere", label: "Somewhere safe to be tonight" },
         { id: "family", label: "Support for my family or friends" },
+        { id: "any", label: "I'm not sure. Show me everything that's open" },
       ],
     },
     someone: {
@@ -131,6 +133,18 @@ window.CONTENT = {
         { id: "cut-down", label: "Help for them to cut down or stop" },
         { id: "somewhere", label: "Somewhere safe for them tonight" },
         { id: "family", label: "Support for me, as their family or friend" },
+        { id: "any", label: "I'm not sure. Show me everything that's open" },
+      ],
+    },
+    stranger: {
+      heading: "What does the person need right now?",
+      hint: "Thank you for stopping to help. If they're unwell or won't wake up, call 999.",
+      options: [
+        { id: "talk", label: "Someone for them to talk to" },
+        { id: "safer", label: "Ways for them to use more safely" },
+        { id: "cut-down", label: "Help for them to cut down or stop" },
+        { id: "somewhere", label: "Somewhere safe for them tonight" },
+        { id: "any", label: "I'm not sure. Show me everything that's open" },
       ],
     },
     worker: {
@@ -141,6 +155,7 @@ window.CONTENT = {
         { id: "cut-down", label: "Help for them to cut down or stop" },
         { id: "somewhere", label: "Somewhere safe for them tonight" },
         { id: "family", label: "Support for their family or friends" },
+        { id: "any", label: "I'm not sure. Show me everything that's open" },
       ],
     },
   },
