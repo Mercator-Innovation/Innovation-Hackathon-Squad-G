@@ -1,18 +1,29 @@
-/* The look. Change the colours and fonts here. */
+/* The look: "calm night". Change the colours and fonts here. */
 :root {
-  --bg: #f7f5f0;
+  --night: #14213d;         /* the header band */
+  --night-text: #ffffff;
+  --night-muted: #c9d3e6;
+  --bg: #f4f6f8;
   --surface: #ffffff;
-  --text: #1f2328;
-  --muted: #4a5058;
-  --accent: #2d5f8b;        /* buttons and links */
+  --text: #1b2433;
+  --heading: #14213d;
+  --muted: #4b5565;
+  --accent: #0f6b6b;        /* teal: buttons and links */
+  --accent-soft: #e6f2f2;   /* teal tint for hovers */
   --accent-text: #ffffff;
-  --danger: #b00020;        /* the 999 screen */
+  --danger: #b00020;        /* the 999 button */
   --open: #1d6b3a;          /* "Open now" */
-  --closed: #5c5f66;        /* "Closed now" */
+  --open-soft: #e3f4ea;
+  --soon: #7a4b00;          /* "Opens in 1 hour" */
+  --soon-soft: #fff1d6;
+  --closed: #4b5565;
+  --closed-soft: #eceef1;
   --focus: #ffbf47;
-  --border: #d0d4da;
-  --radius: 10px;
+  --border: #dde2e8;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(20, 33, 61, .06), 0 4px 14px rgba(20, 33, 61, .07);
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --gutter: max(1rem, calc((100% - 38rem) / 2));   /* keeps content in a 38rem column */
 }
 
 * { box-sizing: border-box; }
@@ -23,7 +34,7 @@ body {
   color: var(--text);
   font-family: var(--font);
   font-size: 1.125rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .skip-link { position: absolute; left: -999px; }
@@ -31,68 +42,93 @@ body {
 
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 0 5px #000; }
 
-.site-header { padding: 1rem; max-width: 40rem; margin: 0 auto; }
-.app-name { font-weight: 700; font-size: 1.25rem; margin: 0; }
-.tagline { margin: 0; color: var(--muted); }
+/* Header: a calm navy band */
+.site-header {
+  background: var(--night); color: var(--night-text);
+  padding: 1.25rem var(--gutter) 1.1rem;
+}
+.app-name { font-weight: 700; font-size: 1.3rem; margin: 0; letter-spacing: -.01em; }
+.app-name::before { content: "☾ "; content: "☾ " / ""; color: #9fd3d3; }
+.tagline { margin: .1rem 0 0; color: var(--night-muted); }
 
 .prototype-note {
-  max-width: 40rem; margin: 0 auto 1rem; padding: .5rem 1rem;
-  font-size: .9rem; background: #fff4cc; border-left: 4px solid #8a6d00;
+  margin: 0 0 1.25rem; padding: .6rem var(--gutter);
+  font-size: .9rem; background: #fff6d8; color: #4a3b00; border-bottom: 1px solid #f0e0a8;
 }
 
-main { max-width: 40rem; margin: 0 auto; padding: 0 1rem; }
+main { max-width: 40rem; margin: 0 auto; padding: 0 1rem 1rem; }
 main:focus { outline: none; }
 
-h1 { font-size: 1.75rem; line-height: 1.2; margin: .5rem 0 1rem; }
-h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
+h1 { font-size: 1.85rem; line-height: 1.2; margin: .75rem 0 1rem; color: var(--heading); letter-spacing: -.015em; }
+h2 { font-size: 1.25rem; margin: 2rem 0 .75rem; color: var(--heading); }
 
-.choices { display: grid; gap: .75rem; margin: 1rem 0; padding: 0; list-style: none; }
+.choices { display: grid; gap: .75rem; margin: 1.25rem 0; padding: 0; list-style: none; }
 
 .button {
-  display: block; width: 100%; padding: 1rem;
+  display: block; width: 100%; padding: 1rem 1.1rem;
   font: inherit; font-weight: 600; text-align: left;
   background: var(--surface); color: var(--text);
-  border: 2px solid var(--accent); border-radius: var(--radius);
+  border: 2px solid var(--border); border-left: 5px solid var(--accent); border-radius: var(--radius);
+  box-shadow: var(--shadow);
   cursor: pointer; text-decoration: none;
+  transition: background .15s, border-color .15s, transform .15s;
 }
-.button:hover { background: #eaf1f8; }
-.button.primary { background: var(--accent); color: var(--accent-text); text-align: center; }
-.button.danger { background: var(--danger); border-color: var(--danger); color: #fff; text-align: center; font-size: 1.25rem; }
+.button:hover { background: var(--accent-soft); border-color: var(--accent); }
+.button:active { transform: translateY(1px); }
+/* An arrow on choices, so they read as "next step" */
+.choices .button { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.choices .button::after { content: "→"; content: "→" / ""; color: var(--accent); font-size: 1.2rem; }
+.button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); text-align: center; }
+.button.primary:hover { background: #0b5555; }
+.button.danger { background: var(--danger); border-color: var(--danger); color: #fff; text-align: center; font-size: 1.2rem; }
+.button.danger:hover { background: #8f001a; }
+.choices .button.danger { text-align: left; border-left-color: var(--danger); }
+.choices .button.danger::after { color: #fff; }
 
 .back {
-  background: none; border: none; color: var(--accent); font: inherit;
-  text-decoration: underline; padding: .25rem 0; cursor: pointer;
+  background: none; border: none; color: var(--accent); font: inherit; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 3px; padding: .25rem 0; cursor: pointer;
 }
 
 .steps { padding-left: 1.25rem; }
 .steps li { margin-bottom: .5rem; }
 
+/* Service cards */
 .service {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1rem; margin-bottom: .75rem;
+  border-radius: var(--radius); padding: 1.1rem 1.15rem; margin-bottom: .9rem;
+  box-shadow: var(--shadow);
 }
-.service h3 { margin: 0 0 .25rem; font-size: 1.125rem; }
-.service p { margin: .25rem 0; }
-.status { font-weight: 700; font-size: .95rem; }
-.status.open { color: var(--open); }
-.status.closed { color: var(--closed); }
+.service h3 { margin: 0 0 .4rem; font-size: 1.15rem; color: var(--heading); }
+.service p { margin: .3rem 0; }
+
+/* Status as a soft pill: words and a symbol, never colour alone */
+.status {
+  display: inline-block; font-weight: 700; font-size: .9rem;
+  padding: .15rem .65rem; border-radius: 999px;
+}
+.status.open { color: var(--open); background: var(--open-soft); }
+.status.closed { color: var(--closed); background: var(--closed-soft); }
 .status.open::before { content: "● "; content: "● " / ""; }
 .status.closed::before { content: "○ "; content: "○ " / ""; }
 .meta { color: var(--muted); font-size: .95rem; }
-.ways { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+
+/* Ways to get in touch: calls and texts are the main action */
+.ways { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
 .ways a, .ways span {
-  padding: .4rem .75rem; border-radius: 999px; border: 1px solid var(--accent);
-  color: var(--accent); text-decoration: none; font-size: .95rem;
+  padding: .5rem .9rem; border-radius: 999px; font-size: .95rem; font-weight: 600; text-decoration: none;
 }
-.ways a:hover { background: #eaf1f8; }
+.ways a { background: var(--accent); color: var(--accent-text); border: 2px solid var(--accent); }
+.ways a:hover { background: #0b5555; }
+.ways span { border: 2px solid var(--border); color: var(--text); font-weight: 500; }
 
 .prototype-controls {
-  margin-top: 2rem;
-  background: #1f2328; color: #fff; padding: .6rem 1rem;
+  margin-top: 2.5rem;
+  background: var(--night); color: #fff; padding: .7rem 1rem;
   display: flex; gap: .5rem; align-items: center; justify-content: center; flex-wrap: wrap;
   font-size: .95rem;
 }
-.prototype-controls select { font: inherit; padding: .25rem; }
+.prototype-controls select { font: inherit; padding: .25rem; border-radius: 6px; }
 .prototype-controls a { color: #fff; margin-left: 1rem; }
 
 /* "Where are you?" */
@@ -100,14 +136,14 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
 .where-form label { font-weight: 700; }
 .where-form .meta { margin: 0; }
 .where-form input {
-  font: inherit; padding: .75rem; width: 100%;
-  border: 2px solid var(--text); border-radius: var(--radius); background: var(--surface);
+  font: inherit; padding: .8rem; width: 100%; color: var(--text);
+  border: 2px solid var(--muted); border-radius: var(--radius); background: var(--surface);
 }
 .message:empty { display: none; }
 .message { font-weight: 600; }
 
 /* "Opening in the next 2 hours" and closed for longer */
-.status.soon { color: #7a4b00; }
+.status.soon { color: var(--soon); background: var(--soon-soft); }
 .status.soon::before { content: "◐ "; content: "◐ " / ""; }
 .later { margin: 1.5rem 0 1rem; }
 .later summary {
@@ -117,8 +153,8 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
 
 /* Privacy promise and "No name needed" */
 .privacy {
-  margin: 2rem 0 1rem; padding: 1rem;
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  margin: 2rem 0 1rem; padding: 1.1rem 1.15rem;
+  background: var(--accent-soft); border: 1px solid #c4e0e0; border-radius: var(--radius);
 }
 .privacy h2 { margin-top: 0; font-size: 1.125rem; }
 .privacy h2::before { content: "🔒 "; content: "🔒 " / ""; }
@@ -138,10 +174,11 @@ h1[tabindex="-1"]:focus { outline: none; box-shadow: none; }
 /* Low battery mode: dark (uses less battery on most phone screens), plain, no extras */
 .site-header { position: relative; }
 .lite-toggle {
-  margin-top: .5rem; font: inherit; font-size: .95rem; padding: .35rem .75rem;
-  background: var(--surface); color: var(--text);
-  border: 2px solid var(--text); border-radius: 999px; cursor: pointer;
+  margin-top: .75rem; font: inherit; font-size: .9rem; padding: .3rem .8rem;
+  background: transparent; color: var(--night-text);
+  border: 2px solid var(--night-muted); border-radius: 999px; cursor: pointer;
 }
+.lite-toggle:hover { background: rgba(255, 255, 255, .1); }
 .lite-toggle[aria-pressed="true"]::before { content: "🔋 "; content: "🔋 " / ""; }
 body.lite {
   --bg: #000000;
@@ -154,7 +191,17 @@ body.lite {
   --closed: #c8c8c8;
   --border: #555555;
   --danger: #ff6b6b;
+  --night: #000000;
+  --heading: #ffffff;
+  --accent-soft: #111111;
+  --open-soft: #000000;
+  --soon-soft: #000000;
+  --closed-soft: #000000;
+  --shadow: none;
 }
+body.lite .site-header { border-bottom: 1px solid #333; }
+body.lite .privacy { border-color: #555; }
+body.lite .button.primary:hover, body.lite .ways a:hover { background: #c4e0ff; }
 body.lite .prototype-note { background: #222; color: #fff; }
 body.lite .button:hover, body.lite .ways a:hover { background: #1a1a1a; }
 body.lite .button.danger { background: #b00020; border-color: #b00020; color: #fff; }
