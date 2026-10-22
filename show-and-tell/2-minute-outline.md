@@ -10,7 +10,7 @@
 
 ## 1:00 to 1:30: One thing that didn't work
 
-- **"Staying sober" isn't an option yet.** In scenario B, the first results were drop-ins offering clean injecting equipment. That's the wrong thing to show someone trying to stay away from temptation on a Friday night.
+- **We nearly showed the wrong help.** Testing scenario B as the person, the first results were drop-ins offering clean injecting equipment: the wrong thing for someone staying away from temptation. Eloise fixed it minutes before the hard stop, but there's still no "help me stay sober tonight" option.
 - **And at 3am, help really does run out.** We built a "Where help runs out" page so services can see the gaps.
 
 ## 1:30 to 2:00: One surprise from the tooling
