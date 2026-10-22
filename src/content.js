@@ -245,6 +245,20 @@ window.CONTENT = {
     hiddenNote: "Low battery mode is on, so web chats and online-only help are hidden.",
   },
 
+  // The language menu. Translations live in content-sco.js and content-gd.js.
+  language: {
+    label: "Language",
+    notYet: "This isn't translated yet, so you're seeing English.",
+  },
+
   back: "Back",
   timeControl: "Pretend the time is",
 };
+
+// Languages people can choose. "lang" tells browsers and screen readers what language the page is in.
+window.LANGUAGES = [
+  { code: "en", name: "English", lang: "en-GB" },
+  { code: "sco", name: "Scots", lang: "sco" },
+  { code: "gd", name: "Gàidhlig", lang: "gd" },
+];
+window.TRANSLATIONS = window.TRANSLATIONS || {};

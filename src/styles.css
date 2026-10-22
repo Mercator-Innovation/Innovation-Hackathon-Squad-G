@@ -217,3 +217,13 @@ body.lite .privacy, body.lite .service { box-shadow: none; }
 /* "Last checked" on real services */
 .checked { font-size: .9rem; color: var(--muted); margin: .5rem 0 0; }
 .checked a { color: var(--accent); }
+
+/* Header controls: low battery mode and language */
+.header-controls { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; margin-top: .75rem; }
+.header-controls .lite-toggle { margin-top: 0; }
+.language-picker { display: flex; gap: .4rem; align-items: center; font-size: .9rem; color: var(--night-muted); }
+.language-picker select {
+  font: inherit; padding: .25rem .4rem; border-radius: 8px;
+  border: 2px solid var(--night-muted); background: var(--night); color: var(--night-text);
+}
+.language-note { margin: .6rem 0 0; font-size: .9rem; color: var(--night-text); }

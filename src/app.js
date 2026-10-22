@@ -2,7 +2,7 @@
 // The words live in content.js and the services in data/services.js.
 
 (function () {
-  var C = window.CONTENT;
+  var C = window.CONTENT;   // the words on screen; changes when someone picks a language
   var services = window.DATA.services;
   var main = document.getElementById("main");
   var pretendSelect = document.getElementById("pretend-time");
@@ -596,12 +596,51 @@
     console.info("Gap counted (prototype: not sent or saved)", gap);
   }
 
+  // ---- Languages: English underneath, with any translated words on top ----
+
+  function mergeWords(english, translated) {
+    if (translated === undefined) return english;
+    if (typeof english !== "object" || english === null || Array.isArray(english)) return translated;
+    var out = {};
+    Object.keys(english).forEach(function (k) { out[k] = mergeWords(english[k], translated[k]); });
+    return out;
+  }
+
+  var languageSelect = document.getElementById("language");
+  var languageNote = document.getElementById("language-note");
+
+  function drawHeader() {
+    document.getElementById("app-name").textContent = C.appName;
+    document.getElementById("tagline").textContent = C.tagline;
+    document.getElementById("prototype-note").textContent = C.prototypeNote;
+    document.getElementById("pretend-label").textContent = C.timeControl;
+    document.getElementById("language-label").textContent = C.language.label;
+  }
+
+  function setLanguage(code) {
+    var info = window.LANGUAGES.find(function (l) { return l.code === code; });
+    var words = window.TRANSLATIONS[code];
+    var translated = code === "en" || (words && Object.keys(words).length > 0);
+    C = code === "en" ? window.CONTENT : mergeWords(window.CONTENT, words || {});
+    // Only say the page is in Scots or Gaelic once there are real translations.
+    document.documentElement.lang = translated ? info.lang : "en-GB";
+    languageNote.hidden = translated;
+    languageNote.textContent = C.language.notYet;
+    drawHeader();
+    drawLiteButton();
+  }
+
+  window.LANGUAGES.forEach(function (l) {
+    languageSelect.append(el("option", { value: l.code, lang: l.lang, text: l.name }));
+  });
+  languageSelect.addEventListener("change", function () {
+    setLanguage(languageSelect.value);
+    show(history[history.length - 1] || "start", false, false);
+  });
+
   // ---- Start up ----
 
-  document.getElementById("app-name").textContent = C.appName;
-  document.getElementById("tagline").textContent = C.tagline;
-  document.getElementById("prototype-note").textContent = C.prototypeNote;
-  document.getElementById("pretend-label").textContent = C.timeControl;
+  drawHeader();
   window.DATA.pretendTimes.forEach(function (t) {
     pretendSelect.append(el("option", { value: t.id, text: t.label }));
   });
