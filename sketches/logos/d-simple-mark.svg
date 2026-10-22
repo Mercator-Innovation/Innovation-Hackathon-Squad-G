@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="A plain white speech bubble with a small crescent moon inside">
+  <circle cx="50" cy="50" r="48" fill="#2e6b55"/>
+  <path d="M40 24h20a20 20 0 0 1 20 20v4a20 20 0 0 1-20 20H46l-14 12 2-12.6A20 20 0 0 1 20 48v-4a20 20 0 0 1 20-20z" fill="#fff"/>
+  <path d="M53 34a12 12 0 1 0 9 19 10 10 0 0 1-9-19z" fill="#2e6b55"/>
+</svg>
