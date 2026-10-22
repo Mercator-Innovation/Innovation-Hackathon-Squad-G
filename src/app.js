@@ -301,6 +301,12 @@
         main.append(el("h2", { text: C.results.allDayHeading }));
         anyTime.forEach(function (h) { main.append(serviceCard(h, "allday", t)); });
       }
+      // A voice to talk to while you wait (companion.html).
+      main.append(el("div", { class: "service" }, [
+        el("h2", { text: C.results.companionHeading }),
+        el("p", { text: C.results.companionText }),
+        el("a", { class: "button", href: "companion.html", text: C.results.companionLink }),
+      ]));
       main.append(el("button", {
         class: "button primary", type: "button", text: C.results.startAgain,
         onclick: function () { answers = { who: null, need: null, where: null }; history = []; show("start"); },
