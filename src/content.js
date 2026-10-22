@@ -2,8 +2,8 @@
 // Keep it kind, plain and person-first. Reading age about 9.
 
 window.CONTENT = {
-  appName: "Find support",
-  tagline: "Day or night. No judgement.",
+  appName: "Get the support  you need",
+  tagline: "Day or night. Whoever you are.",
   prototypeNote: "Prototype. The services here are made-up examples, apart from 999 and NHS 24 (111).",
 
   start: {
@@ -67,6 +67,12 @@ window.CONTENT = {
     openNow: "Open now",
     closedNow: "Closed now",
     opensAt: "Opens",
+    soonHeading: "Opens soon",
+    soonWithinHours: 2,
+    opensIn: "Opens in",
+    hour: "hour",
+    hours: "hours",
+    minutes: "minutes",
     laterHeading: "Closed now, but you can contact them later",
     noneOpen: "Nobody on this list is open right now. NHS 24 on 111 is open all night if you need to talk to someone about your health.",
     startAgain: "Start again",
