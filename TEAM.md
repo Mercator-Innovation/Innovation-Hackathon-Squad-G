@@ -6,7 +6,7 @@
 **Squad name:** Gusto
 **Challenge:** Challenge 2: Help when it's needed (connecting people affected by substance use with support, out of hours)
 **Why we chose it:** It has the biggest human impact. Scotland has the highest rates of drug and alcohol deaths in the UK and Europe, and people are often alone at night when help is closed.
-**The idea:** _(one or two sentences, agreed on the day: who it's for, when they need it, and what it does)_
+**The idea:** A digital first responder for anyone affected by substance use, day or night. It asks a few questions (who is asking, when, what kind of help they need, and whether it's an emergency) and routes them to the right place.
 
 ## Members
 
