@@ -9,10 +9,14 @@ ai_use_before: 1
 hopes: [see-claude, new-people]
 feeling: curious
 # At 19:00
-worked_on: []
-outside_usual_job:
-got_in_way: []
-ai_use_after:
+worked_on: [code, design, content]
+outside_usual_job: a-bit
+got_in_way: [sharing, time]
+ai_use_after: 2
+enjoyed: enjoyed
+pace: right
+worked_best: [mixed-squad, screen-badges, setup]
+again: definitely
 # In the week after
 specialist:
 helped_squad: []
@@ -32,10 +36,15 @@ ai_use_week_after:
 - Prompt that worked: "can you make sure everything is pushed, get the latest and then test everything". Pushing, pulling and testing all happen in one request: Claude checked nothing was unshared, brought in main, then ran 138 journeys plus every other route.
 
 ## At 19:00
-- What I worked on: <answers>
-- How much of it was outside my usual job: <answer>
-- What got in the way: <answers>
-- How much I'd use AI tools in my work now: <answer>
+- What I worked on: Code or features; The design or the look; The words people see
+- How much of it was outside my usual job: A bit
+- What got in the way: Sharing or git; Not enough time
+- How much I'd use AI tools in my work now: Now and then
+- How much I enjoyed the hackathon: Enjoyed it
+- The pace of the afternoon: About right
+- What worked best for me: Working in a mixed squad; The shared screen and badges; The setup before the day
+- Would I take part in another: Definitely
+- One thing to change next time: A short break between end of coding and start of presentations
 
 ## In the week after
 - Did I still need a human specialist: <answer>, for <what>
