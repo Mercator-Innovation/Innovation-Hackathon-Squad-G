@@ -10,6 +10,7 @@
   // What the person has chosen so far, and the screens they have seen (for Back).
   var answers = { who: null, need: null, where: null };
   var MAX_MILES = 30;
+  var SOON_MINUTES = 120;   // "Opening in the next 2 hours"
   var history = [];
 
   // ---- Time: real or pretend ----
@@ -33,46 +34,32 @@
     });
   }
 
-  // When a closed service next opens: which day (0 = today) and what hour.
-  function nextOpeningTime(service, t) {
+  // When a closed service next opens: words like "tomorrow at 9am", and minutes from now.
+  function nextOpening(service, t) {
+    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     for (var offset = 0; offset < 8; offset++) {
       var day = (t.day + offset) % 7;
       var starts = service.hours
         .filter(function (h) { return h.days.indexOf(day) !== -1 && (offset > 0 || h.from > t.hour); })
         .map(function (h) { return h.from; })
         .sort(function (a, b) { return a - b; });
-      if (starts.length) return { offset: offset, day: day, hour: starts[0] };
+      if (starts.length) {
+        var when = offset === 0 ? "today" : offset === 1 ? "tomorrow" : dayNames[day];
+        return {
+          words: when + " at " + formatHour(starts[0]),
+          minutes: Math.round((offset * 24 + starts[0] - t.hour) * 60),
+        };
+      }
     }
-    return null;
+    return { words: "", minutes: Infinity };
   }
 
-  // The next time a closed service opens, as words like "Monday 9am".
-  function nextOpening(service, t) {
-    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var next = nextOpeningTime(service, t);
-    if (!next) return "";
-    var when = next.offset === 0 ? "today" : next.offset === 1 ? "tomorrow" : dayNames[next.day];
-    return when + " at " + formatHour(next.hour);
-  }
-
-  // How many hours until a closed service opens, or null if we don't know.
-  function hoursUntilOpen(service, t) {
-    var next = nextOpeningTime(service, t);
-    return next ? next.offset * 24 + next.hour - t.hour : null;
-  }
-
-  function isOpeningSoon(service, t) {
-    var h = hoursUntilOpen(service, t);
-    return h !== null && h <= C.results.soonWithinHours;
-  }
-
-  // A wait as words like "40 minutes" or "1 hour 30 minutes", rounded up to 5 minutes.
-  function formatWait(hours) {
-    var mins = Math.max(5, Math.ceil(Math.round(hours * 60) / 5) * 5);
-    var h = Math.floor(mins / 60), m = mins % 60;
+  // 80 minutes as "1 hour 20 minutes".
+  function formatWait(minutes) {
+    var h = Math.floor(minutes / 60), m = minutes % 60;
     var parts = [];
-    if (h) parts.push(h + " " + (h === 1 ? C.results.hour : C.results.hours));
-    if (m) parts.push(m + " " + C.results.minutes);
+    if (h) parts.push(h + (h === 1 ? " hour" : " hours"));
+    if (m) parts.push(m + (m === 1 ? " minute" : " minutes"));
     return parts.join(" ");
   }
 
@@ -267,8 +254,18 @@
         return da - db;
       });
       var open = matches.filter(function (s) { return isOpen(s, t); });
-      var soon = matches.filter(function (s) { return !isOpen(s, t) && isOpeningSoon(s, t); });
-      var closed = matches.filter(function (s) { return !isOpen(s, t) && !isOpeningSoon(s, t); });
+      var closed = matches.filter(function (s) { return !isOpen(s, t); });
+      var soon = closed.filter(function (s) { return nextOpening(s, t).minutes <= SOON_MINUTES; });
+      var later = closed.filter(function (s) { return soon.indexOf(s) === -1; });
+
+      // Help that never closes. If nothing else is open, show the fuller list (A&E, the council…).
+      var anyTime = window.HELPLINES.filter(function (h) {
+        if (h.needs.indexOf("all") === -1 && h.needs.indexOf(answers.need) === -1) return false;
+        if (!h.always && open.length) return false;
+        if (!h.town) return true;
+        var d = distanceTo(h);
+        return d !== null && d <= MAX_MILES;
+      });
 
       main.append(backButton(), el("h1", { text: C.results.heading }));
       if (answers.where) {
@@ -277,15 +274,27 @@
           el("button", { class: "back", type: "button", text: C.results.changeLocation, onclick: function () { show("where"); } }),
         ]));
       }
-      if (!open.length) main.append(el("p", { text: C.results.noneOpen }));
-      open.forEach(function (s) { main.append(serviceCard(s, true, t)); });
+      main.append(el("h2", { text: C.results.openHeading }));
+      if (open.length) {
+        open.forEach(function (s) { main.append(serviceCard(s, "open", t)); });
+      } else {
+        main.append(el("p", { text: C.results.noneOpen }));
+        anyTime.forEach(function (h) { main.append(serviceCard(h, "allday", t)); });
+      }
       if (soon.length) {
         main.append(el("h2", { text: C.results.soonHeading }));
-        soon.forEach(function (s) { main.append(serviceCard(s, false, t)); });
+        soon.forEach(function (s) { main.append(serviceCard(s, "soon", t)); });
       }
-      if (closed.length) {
-        main.append(el("h2", { text: C.results.laterHeading }));
-        closed.forEach(function (s) { main.append(serviceCard(s, false, t)); });
+      // Closed for longer: hidden until someone asks, so the list stays short.
+      if (later.length) {
+        main.append(el("details", { class: "later" }, [
+          el("summary", { text: C.results.showLater + " (" + later.length + ")" }),
+        ].concat(later.map(function (s) { return serviceCard(s, "later", t); }))));
+      }
+      // Always end with the lines that never close (already shown above if nothing was open).
+      if (open.length && anyTime.length) {
+        main.append(el("h2", { text: C.results.allDayHeading }));
+        anyTime.forEach(function (h) { main.append(serviceCard(h, "allday", t)); });
       }
       main.append(el("button", {
         class: "button primary", type: "button", text: C.results.startAgain,
@@ -294,17 +303,21 @@
     },
   };
 
-  function serviceCard(s, open, t) {
-    var status = open
-      ? el("p", { class: "status open", text: C.results.openNow })
-      : isOpeningSoon(s, t)
-        ? el("p", { class: "status closed", text: C.results.opensIn + " " + formatWait(hoursUntilOpen(s, t)) + ", " + nextOpening(s, t) + "." })
-        : el("p", { class: "status closed", text: C.results.closedNow + ". " + C.results.opensAt + " " + nextOpening(s, t) + "." });
+  function serviceCard(s, state, t) {
+    var next = s.hours ? nextOpening(s, t) : null;
+    var status;
+    if (state === "allday") status = el("p", { class: "status open", text: s.status || C.results.allDay });
+    else if (state === "open") status = el("p", { class: "status open", text: C.results.openNow });
+    else if (state === "soon") status = el("p", { class: "status soon", text: C.results.opensAt + " " + next.words.replace("today at ", "") + ", " + C.results.opensIn + " " + formatWait(next.minutes) + "." });
+    else status = el("p", { class: "status closed", text: C.results.closedNow + ". " + C.results.opensAt + " " + next.words + "." });
 
-    var ways = Object.keys(s.contact).map(function (way) {
+    var ways = Object.keys(s.contact).filter(function (way) { return way !== "textWord"; }).map(function (way) {
       var label = C.results.ways[way];
       var value = s.contact[way];
       if (way === "phone") return el("a", { href: "tel:" + value.replace(/\s/g, ""), text: label + " " + value });
+      if (way === "text" && s.contact.textWord) {
+        return el("a", { href: "sms:" + value + "?&body=" + s.contact.textWord, text: label + " " + s.contact.textWord + " " + C.results.textWordTo + " " + value });
+      }
       if (way === "text") return el("a", { href: "sms:" + value, text: label + " " + value });
       if (way === "chat") return el("a", { href: value, text: label });
       return el("span", { text: label + ": " + value });
@@ -314,13 +327,13 @@
       el("h3", { text: s.name }),
       status,
       el("p", { text: s.what }),
-      el("p", { class: "meta", text: placeText(s) + (s.lowData ? " · " + C.results.lowData : "") }),
-      el("div", { class: "ways" }, ways),
+      placeText(s) ? el("p", { class: "meta", text: placeText(s) + (s.lowData ? " · " + C.results.lowData : "") }) : null,
+      ways.length ? el("div", { class: "ways" }, ways) : null,
     ]);
   }
 
   function placeText(s) {
-    if (!s.town) return s.area;
+    if (!s.town) return s.area || "";
     var d = distanceTo(s);
     if (d === null) return s.town;
     return s.town + ", " + (d < 1 ? C.results.lessThanAMile.toLowerCase() : Math.round(d) + " " + C.results.milesAway);

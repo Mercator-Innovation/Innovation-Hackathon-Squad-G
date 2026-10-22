@@ -2,9 +2,9 @@
 // Keep it kind, plain and person-first. Reading age about 9.
 
 window.CONTENT = {
-  appName: "Get the support  you need",
-  tagline: "Day or night. Whoever you are.",
-  prototypeNote: "Prototype. The services here are made-up examples, apart from 999 and NHS 24 (111).",
+  appName: "Get the support you need",
+  tagline: "Day or night. No judgement.",
+  prototypeNote: "Prototype. Services marked (example) are made up. The others are real, but check them before you rely on them.",
 
   start: {
     heading: "Is anyone in danger right now?",
@@ -67,14 +67,14 @@ window.CONTENT = {
     openNow: "Open now",
     closedNow: "Closed now",
     opensAt: "Opens",
-    soonHeading: "Opens soon",
-    soonWithinHours: 2,
-    opensIn: "Opens in",
-    hour: "hour",
-    hours: "hours",
-    minutes: "minutes",
-    laterHeading: "Closed now, but you can contact them later",
-    noneOpen: "Nobody on this list is open right now. NHS 24 on 111 is open all night if you need to talk to someone about your health.",
+    openHeading: "Open now",
+    soonHeading: "Opening in the next 2 hours",
+    opensIn: "in",
+    showLater: "Show places that are closed for longer",
+    noneOpen: "Nothing near you is open right now. These can help at any time:",
+    allDayHeading: "Open all day and night",
+    allDay: "Open all day and night",
+    textWordTo: "to",
     startAgain: "Start again",
     lowData: "Works with low data",
     near: "Near",
