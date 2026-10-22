@@ -267,9 +267,9 @@
     need: function () {
       main.append(
         backButton(),
-        el("h1", { text: C.need.heading }),
+        el("h1", { text: C.need[answers.who].heading }),
         el("p", { class: "meta", text: C.need.hint }),
-        choiceList(C.need.options, pickNeed)
+        choiceList(C.need[answers.who].options, pickNeed)
       );
     },
 
