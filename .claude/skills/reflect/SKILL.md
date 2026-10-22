@@ -21,6 +21,8 @@ When something notable happens, offer once, briefly: "Worth noting that?" If yes
 
 It goes in with their next `/share`. Don't interrupt someone in the middle of building: offer it when they pause or share.
 
+**Also on the Discovery Wall** (squad Gusto's choice): if `TEAM.md` has a Discovery Wall link, add the same note to the wall's database too, as one item in the `items` collection: `{ person: "<Firstname Lastname>", kind: "found", text: "<the line>", url: "", answer: "", createdAt: "<now, ISO time>" }`. If the write is refused (they haven't been given edit access yet), say so in one line, keep the note in the log, and suggest they ask Eloise to share the wall with them.
+
 ## At 19:00: two quick calls and one line (three minutes)
 
 1. Ask the first four **At 19:00** questions from `learning/questions.md` in one `AskUserQuestion` call.
