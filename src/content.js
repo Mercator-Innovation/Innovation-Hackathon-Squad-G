@@ -111,6 +111,29 @@ window.CONTENT = {
     forThem: "Find help for them",
   },
 
+  // After "Someone to talk to". Topics match "topics" in the services and helplines data.
+  topic: {
+    hint: "So we can show the lines that know most about it.",
+    me: {
+      heading: "What's on your mind?",
+      options: [
+        { id: "drinking", label: "My drinking" },
+        { id: "drugs", label: "Drugs" },
+        { id: "low", label: "Feeling low or alone" },
+        { id: "unsure", label: "I'm not sure. I just want to talk" },
+      ],
+    },
+    them: {
+      heading: "What would they like to talk about?",
+      options: [
+        { id: "drinking", label: "Their drinking" },
+        { id: "drugs", label: "Drugs" },
+        { id: "low", label: "Feeling low or alone" },
+        { id: "unsure", label: "Not sure. They just want to talk" },
+      ],
+    },
+  },
+
   // The question and options change to match who the help is for (me, someone, worker).
   need: {
     hint: "Pick what fits. You can change it.",
