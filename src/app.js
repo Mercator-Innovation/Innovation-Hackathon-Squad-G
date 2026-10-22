@@ -113,7 +113,8 @@
     return services.concat(window.HELPLINES).some(function (s) {
       if (!s.town) return false;
       if (s.who && s.who.indexOf(answers.who) === -1) return false;
-      if (s.needs.indexOf("all") === -1 && s.needs.indexOf(answers.need) === -1) return false;
+      var forThem = s.forFamily && answers.who === "someone";
+      if (!forThem && s.needs.indexOf("all") === -1 && s.needs.indexOf(answers.need) === -1) return false;
       if (!s.hours) return true;                     // helplines never close
       return isOpen(s, t) || nextOpening(s, t).minutes <= SOON_MINUTES;
     });
@@ -327,6 +328,25 @@
         main.append(el("details", { class: "later" }, [
           el("summary", { text: C.results.showLater + " (" + later.length + ")" }),
         ].concat(later.map(function (s) { return serviceCard(s, "later", t); }))));
+      }
+      // Family and friends get their own support too, whatever they picked.
+      if (answers.who === "someone") {
+        var family = services.filter(function (s) {
+          if (!s.forFamily || matches.indexOf(s) !== -1) return false;
+          if (!s.town) return true;
+          var d = distanceTo(s);
+          return d !== null && d <= MAX_MILES;
+        });
+        if (family.length) {
+          main.append(el("h2", { text: C.results.familyHeading }), el("p", { text: C.results.familyIntro }));
+          family
+            .map(function (s) { return { s: s, open: isOpen(s, t), wait: nextOpening(s, t).minutes }; })
+            .sort(function (a, b) { return (b.open - a.open) || (a.wait - b.wait); })
+            .forEach(function (f) {
+              var state = f.open ? "open" : f.wait <= SOON_MINUTES ? "soon" : "later";
+              main.append(serviceCard(f.s, state, t));
+            });
+        }
       }
       // Always end with the lines that never close (already shown above if nothing was open).
       if (open.length && anyTime.length) {
