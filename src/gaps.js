@@ -42,7 +42,7 @@
 
   function shade(n) {
     var step = Math.min(shades.length - 1, Math.floor((n / max) * shades.length));
-    return { bg: shades[step], fg: step >= 3 ? "#ffffff" : "#1f2328" };
+    return { bg: shades[step], fg: step >= 4 ? "#ffffff" : "#1f2328" };   // dark text on the lighter blues, for contrast
   }
 
   var head = el("tr", {}, [el("th", { scope: "col", text: "Area" })]
@@ -62,7 +62,12 @@
       .concat([el("td", { class: "total", text: String(sum(a.counts)) })]));
   });
 
-  document.getElementById("grid").append(el("table", { class: "grid", "aria-labelledby": "grid-heading" }, [
+  // The table can scroll sideways on a phone, so keyboard users need to be able to reach it.
+  var gridWrap = document.getElementById("grid");
+  gridWrap.setAttribute("tabindex", "0");
+  gridWrap.setAttribute("role", "region");
+  gridWrap.setAttribute("aria-labelledby", "grid-heading");
+  gridWrap.append(el("table", { class: "grid", "aria-labelledby": "grid-heading" }, [
     el("thead", {}, [head]),
     el("tbody", {}, rows),
   ]));

@@ -207,7 +207,8 @@
   var liteButton = document.getElementById("lite-toggle");
 
   function drawLiteButton() {
-    liteButton.textContent = C.lite.toggle + ": " + (lite ? C.lite.on : C.lite.off);
+    liteButton.textContent = C.lite.toggle;
+    liteButton.append(el("span", { "aria-hidden": "true", text: ": " + (lite ? C.lite.on : C.lite.off) }));
     liteButton.setAttribute("aria-pressed", String(lite));
     document.body.classList.toggle("lite", lite);
   }
@@ -624,8 +625,7 @@
     C = code === "en" ? window.CONTENT : mergeWords(window.CONTENT, words || {});
     // Only say the page is in Scots or Gaelic once there are real translations.
     document.documentElement.lang = translated ? info.lang : "en-GB";
-    languageNote.hidden = translated;
-    languageNote.textContent = C.language.notYet;
+    languageNote.textContent = translated ? "" : C.language.notYet;
     drawHeader();
     drawLiteButton();
   }
