@@ -4,7 +4,7 @@
 window.CONTENT = {
   appName: "Find support",
   tagline: "Day or night. No judgement.",
-  prototypeNote: "Prototype. The services here are made-up examples, apart from 999 and NHS 24 (111).",
+  prototypeNote: "Prototype. Services marked (example) are made up. The others are real, but check them before you rely on them.",
 
   start: {
     heading: "Is anyone in danger right now?",
@@ -71,7 +71,10 @@ window.CONTENT = {
     soonHeading: "Opening in the next 2 hours",
     opensIn: "in",
     showLater: "Show places that are closed for longer",
-    noneOpen: "Nobody on this list is open right now. NHS 24 on 111 is open all night if you need to talk to someone about your health.",
+    noneOpen: "Nothing near you is open right now. These can help at any time:",
+    allDayHeading: "Open all day and night",
+    allDay: "Open all day and night",
+    textWordTo: "to",
     startAgain: "Start again",
     lowData: "Works with low data",
     near: "Near",
