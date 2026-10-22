@@ -1,5 +1,6 @@
-// Synthetic, made-up services for the prototype. Not real organisations.
-// 999 and NHS 24 (111) are real public numbers.
+// Services for the prototype. Ones marked "(example)" are made up. The others are real
+// (checked 22 October 2026): check again before relying on them.
+// Help that is open all day and night lives in helplines.js.
 // hours: list of { days: [0-6, Sunday is 0], from: hour, to: hour }.
 // "to" can go past 24 for overnight, e.g. from 20 to 30 means 8pm to 6am.
 // who: me, someone, worker. needs: talk, safer, cut-down, somewhere, family.
@@ -7,16 +8,6 @@
 
 window.DATA = {
   services: [
-    {
-      name: "NHS 24",
-      what: "Health advice from a nurse, any time. Not for emergencies.",
-      contact: { phone: "111" },
-      hours: [{ days: [0, 1, 2, 3, 4, 5, 6], from: 0, to: 24 }],
-      who: ["me", "someone", "worker"],
-      needs: ["talk", "safer"],
-      lowData: true,
-      area: "All of Scotland",
-    },
     {
       name: "Nightline Peer Support (example)",
       what: "Talk to someone who has been through it. They will listen, not lecture.",
@@ -120,12 +111,39 @@ window.DATA = {
       lowData: true,
       town: "Inverness",
     },
+    {
+      name: "Breathing Space",
+      what: "Free, confidential phone line if you're feeling low or anxious. For anyone over 16.",
+      contact: { phone: "0800 83 85 87" },
+      hours: [
+        { days: [1, 2, 3, 4], from: 18, to: 26 },   // Monday to Thursday, 6pm to 2am
+        { days: [5], from: 18, to: 24 },            // Friday 6pm ...
+        { days: [6], from: 0, to: 24 },
+        { days: [0], from: 0, to: 30 },             // ... right through to Monday 6am
+      ],
+      who: ["me", "someone"],
+      needs: ["talk", "family"],
+      lowData: true,
+      area: "All of Scotland",
+    },
+    {
+      name: "Shelter Scotland housing helpline",
+      what: "Free advice if you're homeless or might lose your home.",
+      contact: { phone: "0808 800 444" },
+      hours: [{ days: [1, 2, 3, 4, 5], from: 9, to: 17 }],
+      who: ["me", "someone", "worker"],
+      needs: ["somewhere"],
+      lowData: true,
+      area: "All of Scotland",
+    },
   ],
 
   // Times for the "pretend the time is" control. day: 0-6 (Sunday is 0).
   pretendTimes: [
     { id: "now", label: "Now (real time)" },
+    { id: "mon-08", label: "Monday 8am", day: 1, hour: 8 },
     { id: "tue-11", label: "Tuesday 11am", day: 2, hour: 11 },
+    { id: "fri-17", label: "Friday 5pm", day: 5, hour: 17 },
     { id: "fri-23", label: "Friday 11pm", day: 5, hour: 23 },
     { id: "sun-03", label: "Sunday 3am", day: 0, hour: 3 },
   ],
