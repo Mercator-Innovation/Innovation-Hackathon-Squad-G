@@ -209,9 +209,9 @@
     need: function () {
       main.append(
         backButton(),
-        el("h1", { text: C.need.heading }),
+        el("h1", { text: C.need[answers.who].heading }),
         el("p", { class: "meta", text: C.need.hint }),
-        choiceList(C.need.options, function (id) {
+        choiceList(C.need[answers.who].options, function (id) {
           answers.need = id;
           // Only ask where they are if there's somewhere to go in person for this.
           if (hasPlacesToVisit()) { show("where"); } else { answers.where = null; show("results"); }
