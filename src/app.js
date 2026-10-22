@@ -108,13 +108,26 @@
 
   // Is there an in-person place (with a town) for this person's situation that's open now
   // or opens within 2 hours? If not, there's no point asking where they are.
+  // Does this service suit who the help is for? For someone they don't know, show what that
+  // person could use themselves, or with a friend's help. Not family-only or workers-only support.
+  function whoFits(s) {
+    if (!s.who) return true;
+    if (answers.who === "stranger") return !s.forFamily && (s.who.indexOf("me") !== -1 || s.who.indexOf("someone") !== -1);
+    return s.who.indexOf(answers.who) !== -1;
+  }
+
+  // Does it suit what they need? "I'm not sure" means everything.
+  function needFits(s) {
+    return answers.need === "any" || s.needs.indexOf("all") !== -1 || s.needs.indexOf(answers.need) !== -1;
+  }
+
   function hasPlacesToVisit() {
     var t = currentTime();
     return services.concat(window.HELPLINES).some(function (s) {
       if (!s.town) return false;
-      if (s.who && s.who.indexOf(answers.who) === -1) return false;
+      if (!whoFits(s)) return false;
       var forThem = s.forFamily && answers.who === "someone";
-      if (!forThem && s.needs.indexOf("all") === -1 && s.needs.indexOf(answers.need) === -1) return false;
+      if (!forThem && !needFits(s)) return false;
       if (!s.hours) return true;                     // helplines never close
       return isOpen(s, t) || nextOpening(s, t).minutes <= SOON_MINUTES;
     });
@@ -334,7 +347,7 @@
       main.append(
         backButton(),
         el("h1", { text: C.need[answers.who].heading }),
-        el("p", { class: "meta", text: C.need.hint }),
+        el("p", { class: "meta", text: C.need[answers.who].hint || C.need.hint }),
         choiceList(C.need[answers.who].options, pickNeed)
       );
     },
@@ -398,7 +411,7 @@
     results: function () {
       var t = currentTime();
       var matches = services.filter(function (s) {
-        if (s.who.indexOf(answers.who) === -1 || s.needs.indexOf(answers.need) === -1) return false;
+        if (!whoFits(s) || !needFits(s)) return false;
         if (lite && !usableInLite(s)) return false;    // low battery: no web chat
         if (!s.town) return true;                      // phone and online: anywhere
         var d = distanceTo(s);
@@ -419,7 +432,7 @@
 
       // Help that never closes. If nothing else is open, show the fuller list (A&E, the council…).
       var anyTime = window.HELPLINES.filter(function (h) {
-        if (h.needs.indexOf("all") === -1 && h.needs.indexOf(answers.need) === -1) return false;
+        if (!needFits(h)) return false;
         if (!h.always && open.length) return false;
         if (!h.town) return true;
         var d = distanceTo(h);
