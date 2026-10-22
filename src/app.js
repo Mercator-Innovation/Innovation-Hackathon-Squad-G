@@ -262,8 +262,9 @@
     window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
   }
 
-  // The 999 button and the read-aloud switch stay on every naloxone screen.
-  function naloxoneTop() {
+  // The read-aloud switch stays on every naloxone screen. The 999 button shows on the
+  // "which naloxone" screen and step 1 (which says to call 999), not on the later steps.
+  function naloxoneTop(showCall) {
     var toggle = el("label", { class: "toggle" }, [el("input", { type: "checkbox" }), document.createTextNode(" " + C.naloxone.readAloud)]);
     var box = toggle.querySelector("input");
     box.checked = readAloud;
@@ -274,7 +275,7 @@
       if (readAloud && step) say(step.textContent);
     });
     return el("div", { class: "naloxone-top" }, [
-      el("a", { class: "button danger", href: "tel:999", text: C.naloxone.call }),
+      showCall ? el("a", { class: "button danger", href: "tel:999", text: C.naloxone.call }) : null,
       toggle,
     ]);
   }
@@ -295,7 +296,7 @@
         backButton(),
         el("h1", { text: C.naloxone.heading }),
         el("p", { text: C.naloxone.intro }),
-        naloxoneTop(),
+        naloxoneTop(true),
         el("ul", { class: "choices" }, Object.keys(C.naloxone.kits).map(function (id) {
           return el("li", {}, [el("button", { class: "button", type: "button", text: C.naloxone.kits[id].label,
             onclick: function () { naloxoneKit = id; naloxoneStep = 0; show("naloxoneSteps"); } })]);
@@ -317,7 +318,7 @@
       main.append.apply(main, [
         backButton(),
         el("h1", { text: kit.name + ": " + C.naloxone.stepOf.replace("{n}", naloxoneStep + 1).replace("{total}", total) }),
-        naloxoneTop(),
+        naloxoneTop(naloxoneStep === 0),
         el("p", { class: "naloxone-step", text: step.text }),
         step.timer ? el("button", { class: "button", type: "button", text: C.naloxone.timer, onclick: function () {
           var left = 120;
@@ -540,7 +541,10 @@
         return d !== null && d <= MAX_MILES;           // in person: only if near enough
       });
       // Places you can walk into come first, nearest first; then phone and online.
+      // Services made for what's on their mind (e.g. Drinkline for "my drinking") come first.
+      var forTopic = function (s) { return answers.topic && s.topics && s.topics.indexOf(answers.topic) !== -1 ? 0 : 1; };
       matches.sort(function (a, b) {
+        if (forTopic(a) !== forTopic(b)) return forTopic(a) - forTopic(b);
         var da = distanceTo(a), db = distanceTo(b);
         if (da === null && db === null) return 0;
         if (da === null) return 1;
