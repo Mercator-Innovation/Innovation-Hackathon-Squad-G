@@ -2,8 +2,8 @@
 
 > The longer version of `showcase.md`, kept for writing slides and speaker notes. `showcase.md` has the short bullets to present from. If one changes, check the other.
 
-**Wednesday 11 November, 14:00 to 15:40, on Teams.** 10-minute slot: about 9 minutes presenting, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 10 November.
+**Wednesday 25 November, 14:00 to 15:40, on Teams.** 10-minute slot: about 9 minutes presenting, then 1 minute for questions.
+**Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
 
 > Draft by Eloise with Claude, 9 November. Lines marked **[to fill]** need the squad: most of them come from everyone's `/reflect`, which only Eloise has started so far.
 
@@ -70,9 +70,9 @@ Close with: *"At 3am, help really does run out. That's what the app is honest ab
 
 ---
 
-## Before Wednesday
+## Before Wednesday 25 November
 
 - [ ] Everyone runs `/reflect` (about 5 minutes), so the **[to fill]** lines can be filled in
-- [ ] Agree who presents, and whether we go live or send a recording (by Tuesday 10 November)
+- [ ] Agree who presents, and whether we go live or send a recording (by Tuesday 24 November)
 - [ ] Presenters: say "get the latest and make it run for me", then rehearse the demo once
 - [ ] Time a run-through: if it's over 9 minutes, trim "How the afternoon went" first

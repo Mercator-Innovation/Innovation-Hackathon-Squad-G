@@ -1,7 +1,7 @@
 # Showcase: Squad Gusto
 
-**Wednesday 11 November, 14:00 to 15:40, on Teams.** About 9 minutes, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 10 November.
+**Wednesday 25 November, 14:00 to 15:40, on Teams.** About 9 minutes, then 1 minute for questions.
+**Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
 
 > Draft by Eloise with Claude, 9 November. **[to fill]** lines need the squad's `/reflect` answers.
 
@@ -73,9 +73,9 @@ Close: *"At 3am, help really does run out."*
 
 ---
 
-## Before Wednesday
+## Before Wednesday 25 November
 
 - [ ] Everyone runs `/reflect` (5 minutes)
-- [ ] Pick presenters; live or recorded (recordings due 10 November)
+- [ ] Pick presenters; live or recorded (recordings due 24 November)
 - [ ] Presenters: "get the latest and make it run for me", then rehearse the demo
 - [ ] Time a run-through; trim "How the afternoon went" if over 9 minutes
