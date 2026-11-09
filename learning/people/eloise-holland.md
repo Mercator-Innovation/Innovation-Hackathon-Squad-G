@@ -18,10 +18,12 @@ pace: right
 worked_best: [mixed-squad, screen-badges, setup]
 again: definitely
 # In the week after
-specialist:
-helped_squad: []
+specialist: sometimes
+helped_squad: [screen, talking]
 idea_where: []
-ai_use_week_after:
+ai_use_week_after: 2
+# Three-week check-in
+idea_tried:
 ---
 
 # Eloise Holland: learning log
@@ -47,11 +49,12 @@ ai_use_week_after:
 - One thing to change next time: A short break between end of coding and start of presentations
 
 ## In the week after
-- Did I still need a human specialist: <answer>, for <what>
-- What helped most when building as a squad: <answers>
-- The most useful thing I learned: <in my words>
-- **One idea to carry forward:** <in my words>, and where it could fit: <answers>
-- How much I expect to use AI tools from now on: <answer>
+- Did I still need a human specialist: Sometimes, for <what>
+- What helped most when building as a squad: The shared screen; Talking it through first
+- The most useful thing I learned: There's so many different considerations needed for a project when you look at it from different roles
+- **One idea to carry forward:** I liked discussing through all our different ideas as we worked, and where it could fit: No preference
+- How much I expect to use AI tools from now on: Now and then
 
-## Three-week check-in (around 12 Nov)
-- Did I try, share or suggest my idea anywhere? What happened, or what got in the way?
+## Three-week check-in
+- Have I tried, shared or suggested my idea: <answer>
+- What happened, or what got in the way: <in my words>
