@@ -27,19 +27,19 @@ Set **Pretend the time is** to **Sunday 3am** first.
 
 Close: *"At 3am, help really does run out."*
 
-## 2:30 to 3:30: How the afternoon went
+## 2:30 to 3:30: How we worked, and how we used Claude
 
-- 15:16 named, 15:41 challenge picked
-- 16:01 first version on screen
-- 57 shares by the hard stop
+- One shared screen; everyone on their own branch
+- Claude did the git, so no one had to learn it first
+- 16:01 first version, then 57 small shares by 18:40
+- Claude helped us research, build, test and share
 - Look together: **[to fill]**
-- Last hour: family path, naloxone guide, languages, new look
 
-## 3:30 to 4:30: What didn't work
+## 3:30 to 4:30: What didn't go smoothly
 
-- Nearly showed clean needles to someone staying sober: caught by testing as the person
-- Open data has no opening hours, so "open now" is made up
-- Last-minute churn: one setting changed seven times in twelve minutes
+- Git still tripped some of us up
+- Claude got things wrong: testing as the person caught it
+- Rushed edits: one setting changed seven times in twelve minutes
 
 ## 4:30 to 7:30: Tooling, roles and the squad
 
