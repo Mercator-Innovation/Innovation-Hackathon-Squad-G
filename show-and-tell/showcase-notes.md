@@ -26,14 +26,31 @@ Set **Pretend the time is** to **Sunday 3am** first (bottom of the page). Then c
 
 Close with: *"At 3am, help really does run out. That's what the app is honest about, and it's what the 'Where help runs out' page shows services."*
 
-## 2:30 to 3:30: How the afternoon actually went
+## 2:30 to 3:30: How we worked, and how we used Claude
+
+> After the demo, the focus is how we worked together and used Claude, not the problem itself.
+
+- **How we worked:** the merge captain drove one shared screen. Each person worked on their own branch and asked Claude to share: it committed, merged into the shared version, and the big screen refreshed. Mthoko, as product owner, recorded the decisions.
+- **How we used Claude:**
+  - **Research:** David asked which helplines are best for what problem. Claude researched real Scottish helplines and left out one it couldn't confirm.
+  - **Build:** a first version on screen at 16:01, then small changes in plain words.
+  - **Test:** Mthoko walked the prototype as *"a mother who's kept awake at night, it's 2am"*; Chay asked *"Can you test the pages"*.
+  - **Share:** *"can you make sure everything is pushed, get the latest and then test everything"*.
+
+**The timeline:**
 
 - **15:16** squad named, **15:41** challenge picked, then talked it through. Mthoko sketched the triage questions while Eloise built.
 - **16:01** first version on the shared screen. From then on it was small, frequent shares: **57 shares between 15:00 and the hard stop**, all merged into one shared version, with the big screen refreshing as they landed.
 - **At the look together:** **[to fill: what was working, what was confusing, what was missing. The notes in TEAM.md are empty, so the squad needs to remember]**.
 - The last hour added the things that make it humane: a family path, a naloxone guide, advice you can act on now, a language menu, and a calmer look.
 
-## 3:30 to 4:30: What didn't work, and why
+## 3:30 to 4:30: What didn't go smoothly, and why
+
+- **Git and sharing** still got in the way for some of us, even with Claude doing it. Sign-in and signing keys needed a person to sort out.
+- **Claude got things wrong** (below), and walking the journey as the person is what caught it.
+- **Rushed edits** (below): change is easy with AI, and so is undoing it.
+
+The detail, for speaker notes:
 
 - **We nearly showed the wrong help.** Testing another journey, someone staying sober on a Friday night, as the person, the first results were drop-ins offering clean injecting equipment. It was fixed minutes before the hard stop, but only because we walked the journey as the person.
 - **Open data can't answer "what's open at 2am?"** Scotland's open directory of services (ALISS) has phone numbers and addresses, but no opening hours, so every "open now" in our prototype is made up. That's a finding in itself: structured opening hours are the missing piece.
