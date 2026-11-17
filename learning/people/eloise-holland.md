@@ -20,7 +20,7 @@ again: definitely
 # In the week after
 specialist: sometimes
 helped_squad: [screen, talking]
-idea_where: []
+idea_where: [other]
 ai_use_week_after: 2
 # Three-week check-in
 idea_tried: tried
@@ -49,10 +49,10 @@ idea_tried: tried
 - One thing to change next time: A short break between end of coding and start of presentations
 
 ## In the week after
-- Did I still need a human specialist: Sometimes, for <what>
+- Did I still need a human specialist: Sometimes, for I needed help with what is most useful to prioritise for a demo. Also with what areas are good to focus on for accessibility
 - What helped most when building as a squad: The shared screen; Talking it through first
 - The most useful thing I learned: There's so many different considerations needed for a project when you look at it from different roles
-- **One idea to carry forward:** I liked discussing through all our different ideas as we worked, and where it could fit: No preference
+- **One idea to carry forward:** I liked discussing through all our different ideas as we worked, and where it could fit: In group training
 - How much I expect to use AI tools from now on: Now and then
 
 ## Three-week check-in
