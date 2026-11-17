@@ -3,7 +3,7 @@
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** About 9 minutes, then 1 minute for questions.
 **Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
 
-> Draft by Eloise with Claude, 9 November. **[to fill]** lines need the squad's `/reflect` answers.
+> Draft by Eloise with Claude, 9 November; Chay's and David's reflections added 17 November. **[to fill]** lines still need Bradley's and Mthoko's `/reflect` answers.
 
 ---
 
@@ -44,7 +44,7 @@ Close: *"At 3am, help really does run out."*
 ## 4:30 to 7:30: Tooling, roles and the squad
 
 **Outside our usual jobs:**
-- **Chay (QA):** built a talking voice companion
+- **Chay (QA):** built a talking voice companion and a work board
 - **David (content):** new helplines step, then restyled the app
 - **Bradley (research):** family path and the gaps page **[to fill: in his words]**
 - **Mthoko (delivery):** the 2am mum scenario **[to fill: in their words]**
@@ -54,16 +54,23 @@ Close: *"At 3am, help really does run out."*
 - David: *"fleshed out some fuzzy ideas super quick"*
 - One prompt to share, update and test everything
 - Claude left out helplines it couldn't confirm
+- Chay: *"not be frightened of these tools and embrace the change"*
 
 **Easy and hard:**
 - Easy: the shared screen, talking it through
 - Hard: git, and time
-- **[to fill: any sceptical views, said straight]**
+- We still needed specialists:
+  - David: *"it's the intuition and related interest that often makes human intervention valuable"*
+  - Chay: going live needs help with *"scaling and security"*
+  - Eloise: what to prioritise for a demo, and accessibility
+- **[to fill: Bradley's and Mthoko's views]**
 
 ## 7:30 to 9:00: Ideas to carry forward
 
-- Eloise: *"I liked discussing through all our different ideas as we worked"*
-- **[to fill: one idea each from the others]**
+- **Eloise:** talk ideas through as you work. Tried it in a Claude workshop
+- **Chay:** take the prototypes live, for clients where tools are allowed
+- **David:** let AI do the fiddly bits. Tried it: a deck from the Mercator template
+- **[to fill: Bradley and Mthoko]**
 - For Mercator:
   - Mixed roles catch the human problems
   - Small, frequent shares let five people build at once
