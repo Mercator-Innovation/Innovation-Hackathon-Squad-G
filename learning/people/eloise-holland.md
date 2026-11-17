@@ -23,7 +23,7 @@ helped_squad: [screen, talking]
 idea_where: []
 ai_use_week_after: 2
 # Three-week check-in
-idea_tried:
+idea_tried: tried
 ---
 
 # Eloise Holland: learning log
@@ -56,5 +56,5 @@ idea_tried:
 - How much I expect to use AI tools from now on: Now and then
 
 ## Three-week check-in
-- Have I tried, shared or suggested my idea: <answer>
-- What happened, or what got in the way: <in my words>
+- Have I tried, shared or suggested my idea: Yes, I've tried it
+- What happened, or what got in the way: I tried it when working with others in a claude workshop in the office
