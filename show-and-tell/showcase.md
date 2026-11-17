@@ -33,6 +33,7 @@ Close: *"At 3am, help really does run out."*
 - Claude did the git, so no one had to learn it first
 - 16:01 first version, then 57 small shares by 18:40
 - Claude helped us research, build, test and share
+- Afterwards, it planned and built this presentation with us
 - Look together: **[to fill]**
 
 ## 3:30 to 4:30: What didn't go smoothly

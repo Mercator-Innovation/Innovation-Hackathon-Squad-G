@@ -36,6 +36,7 @@ Close with: *"At 3am, help really does run out. That's what the app is honest ab
   - **Build:** a first version on screen at 16:01, then small changes in plain words.
   - **Test:** Mthoko walked the prototype as *"a mother who's kept awake at night, it's 2am"*; Chay asked *"Can you test the pages"*.
   - **Share:** *"can you make sure everything is pushed, get the latest and then test everything"*.
+  - **And afterwards, this presentation:** Eloise asked Claude for a structure for an 8 to 10 minute talk. It drafted the showcase from our learning logs and the git history, quoting reflections word for word, then built the slides from the Mercator template. We steered it: shorter bullets, one demo, then a focus on how we worked. People still had to fill the gaps it couldn't: Bradley's and Mthoko's reflections, and checking the slides in PowerPoint.
 
 **The timeline:**
 
