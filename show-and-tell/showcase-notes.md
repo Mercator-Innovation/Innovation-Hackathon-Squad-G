@@ -3,7 +3,7 @@
 > The longer version of `showcase.md`, kept for writing slides and speaker notes. `showcase.md` has the short bullets to present from. If one changes, check the other.
 
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** 10-minute slot: about 9 minutes presenting, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
+**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. We're presenting live.
 
 **Who presents what** _(a suggestion, to agree with them)_:
 

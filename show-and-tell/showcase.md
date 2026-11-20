@@ -1,7 +1,7 @@
 # Showcase: Squad Gusto
 
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** About 9 minutes, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
+**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. We're presenting live.
 
 **Who presents what** _(a suggestion, to agree with them)_:
 

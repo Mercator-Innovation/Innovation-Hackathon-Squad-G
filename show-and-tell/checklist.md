@@ -2,7 +2,7 @@
 
 > Getting ready for the showcase. The talk is in `showcase.md`, the detail in `showcase-notes.md`, and the slides in `Gusto showcase deck.pptx`.
 
-Showcase: **Wednesday 25 November**. Recordings due: **Tuesday 24 November**.
+Showcase: **Wednesday 25 November**, 14:00 to 15:40 on Teams. We're presenting **live**.
 
 **Before Monday's meeting (23 November)**
 - [ ] Mthoko runs `/reflect` (all three parts, about 5 minutes): the last **[to fill]** gaps
@@ -13,7 +13,6 @@ Showcase: **Wednesday 25 November**. Recordings due: **Tuesday 24 November**.
 
 **At Monday's meeting**
 - [ ] Confirm presenters and the split (David, Bradley on the demo, Chay)
-- [ ] Decide: live or recorded? If recorded, record before Tuesday ends
 - [ ] Timed run-through with the real deck and the live demo; aim for 9 minutes or less (trim "Our afternoon" first)
 - [ ] Agree changes, and pick one person to make them (two people editing at once caused a mix-up)
 - [ ] Agree a backup if the demo fails: talk through the 5 steps on the demo slide
@@ -21,5 +20,4 @@ Showcase: **Wednesday 25 November**. Recordings due: **Tuesday 24 November**.
 
 **After the meeting**
 - [ ] Final edits shared by Monday evening
-- [ ] If recorded: send to Sheldon Gold by Tuesday 24 November
 - [ ] Presenters: "get the latest" before Wednesday
