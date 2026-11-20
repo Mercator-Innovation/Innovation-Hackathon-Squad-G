@@ -3,7 +3,15 @@
 > The longer version of `showcase.md`, kept for writing slides and speaker notes. `showcase.md` has the short bullets to present from. If one changes, check the other.
 
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** 10-minute slot: about 9 minutes presenting, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
+**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
+
+**Who presents what** _(a suggestion, to agree with them)_:
+
+| Who | Sections |
+|---|---|
+| **David** | The challenge and what we built (0:00–1:00); tooling, roles and the squad (4:30–7:30) |
+| **Bradley** | The demo (1:00–2:30); ideas to carry forward and what Mercator can take from this (7:30–9:00) |
+| **Chay** | How we worked and used Claude; what didn't go smoothly (2:30–4:30) |
 
 > Draft by Eloise with Claude, 9 November; Chay's and David's reflections added 17 November. Lines marked **[to fill]** still need Mthoko's `/reflect` answers. Bradley's added 20 November. The deck is `Gusto showcase deck.pptx` (Chay's design).
 
@@ -17,7 +25,7 @@
 
 ## 1:00 to 2:30: Demo: the mum at 3am
 
-Set **Pretend the time is** to **Sunday 3am** first (bottom of the page). Then click, saying what she'd feel:
+Before the call, Bradley says "get the latest and make it run for me" so the site is running on his laptop. The demo slide links to **http://localhost:8766/**: it only works on a laptop where the site is running. Set **Pretend the time is** to **Sunday 3am** first (bottom of the page). Then click, saying what she'd feel:
 
 1. **No, not right now → Someone I care about.** *"It's 3am. Her son is 20 and hasn't come home again after Saturday night."* The app says: *"It's hard when someone you care about is using. You're not on your own."*
 2. **I don't know what to do or say.** What to do tonight, and how to talk tomorrow: *"I'm worried about you", not "You always…"*. No blame, no lecture.
@@ -42,7 +50,6 @@ Close with: *"At 3am, help really does run out. That's what the app is honest ab
 
 - **15:16** squad named, **15:41** challenge picked, then talked it through. Mthoko sketched the triage questions while Eloise built.
 - **16:01** first version on the shared screen. From then on it was small, frequent shares: **57 shares between 15:00 and the hard stop**, all merged into one shared version, with the big screen refreshing as they landed.
-- **At the look together:** **[to fill: what was working, what was confusing, what was missing. The notes in TEAM.md are empty, so the squad needs to remember]**.
 - The last hour added the things that make it humane: a family path, a naloxone guide, advice you can act on now, a language menu, and a calmer look.
 
 ## 3:30 to 4:30: What didn't go smoothly, and why
