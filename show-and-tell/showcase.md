@@ -1,7 +1,15 @@
 # Showcase: Squad Gusto
 
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** About 9 minutes, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
+**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
+
+**Who presents what** _(a suggestion, to agree with them)_:
+
+| Who | Sections |
+|---|---|
+| **David** | The challenge and what we built (0:00–1:00); tooling, roles and the squad (4:30–7:30) |
+| **Bradley** | The demo (1:00–2:30); ideas to carry forward and what Mercator can take from this (7:30–9:00) |
+| **Chay** | How we worked and used Claude; what didn't go smoothly (2:30–4:30) |
 
 > Draft by Eloise with Claude, 9 November; Chay's, David's and Bradley's reflections added by 20 November. **[to fill]** lines still need Mthoko's `/reflect` answers. The deck is `Gusto showcase deck.pptx` (Chay's design).
 
@@ -18,7 +26,7 @@
 
 ## 1:00 to 2:30: Demo: the mum at 3am
 
-Set **Pretend the time is** to **Sunday 3am** first.
+Before the call, Bradley says "get the latest and make it run for me". The demo slide links to **http://localhost:8766/**, which only works on his laptop once that's running. Then set **Pretend the time is** to **Sunday 3am**.
 
 1. **No, not right now → Someone I care about.** Her son, 20, hasn't come home.
 2. **I don't know what to do or say.** Tonight's steps, tomorrow's talk, no blame.
@@ -34,7 +42,6 @@ Close: *"At 3am, help really does run out."*
 - 16:01 first version, then 57 small shares by 18:40
 - Claude helped us research, build, test and share
 - Afterwards, it planned and built this presentation with us
-- Look together: **[to fill]**
 
 ## 3:30 to 4:30: What didn't go smoothly
 
