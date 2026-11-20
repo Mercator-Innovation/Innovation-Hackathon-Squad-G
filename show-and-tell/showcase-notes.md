@@ -5,7 +5,7 @@
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** 10-minute slot: about 9 minutes presenting, then 1 minute for questions.
 **Challenge 2: Help when it's needed.** Presenters: _(to confirm)_. Recording, if we send one: to Sheldon Gold by Tuesday 24 November.
 
-> Draft by Eloise with Claude, 9 November; Chay's and David's reflections added 17 November. Lines marked **[to fill]** still need Bradley's and Mthoko's `/reflect` answers (Bradley's log is still blank).
+> Draft by Eloise with Claude, 9 November; Chay's and David's reflections added 17 November. Lines marked **[to fill]** still need Mthoko's `/reflect` answers. Bradley's added 20 November. The deck is `Gusto showcase deck.pptx` (Chay's design).
 
 ---
 
@@ -88,7 +88,9 @@ The detail, for speaker notes:
 - **Chay:** *"I think its now taking the tools or the poc's and elevating them to be fully functional and deployed live."* Where it fits: client work where the tools are permitted. Not shared yet, but he plans to raise it with his team.
 - **David:** *"Keep using AI for doing the fiddly bits for certain kinds of work, like putting together a presentation,  because it can be a massive time saver."* He tried it: he gave Claude the Mercator slide deck template and his ideas, and got *"a good starter for 10"*.
 - **Eloise** tried hers *"when working with others in a claude workshop in the office"*.
-- **[to fill: one idea each from Bradley and Mthoko, and where it went]**
+- **Bradley:** *"Using claude more so that I get more used to 'thinking to use it' i'm. still in a stage where i'm not sure what i can ask/can't ask it to do... what i can delegate vs what i ought not to etc."* Where it fits: internal work, a bid, client work where the tools are permitted. Not tried yet: *"just research sessions where i'm not sure if i'm allowed to use AI - still a lot of guardrails that i'm not famliar with so its easier to err on the side of not using it"*. What he learned: *"I think it's how to use cluade as a teammate and work with others. I learned how using laude amplified what we got out as a team"*. Specialist help (rarely): *"If things in my sessions get overly technical that I can't answer credibly, I lean on tech leads for support"*.
+- **[to fill: one idea from Mthoko, and where it went]**
+- **For Mercator, from Bradley:** people need clear guardrails on when they can use AI, or they'll err on the side of not using it.
 - **For Mercator:**
   - Mixed squads with AI build fast, and it's the mix of roles that catches the human problems (like the wrong help for someone staying sober).
   - Small, frequent shares onto one shared screen kept five people building at once without clashes.
