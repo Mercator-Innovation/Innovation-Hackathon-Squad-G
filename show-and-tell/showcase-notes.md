@@ -107,9 +107,4 @@ The detail, for speaker notes:
 
 ---
 
-## Before Wednesday 25 November
-
-- [ ] Everyone runs `/reflect` (about 5 minutes), so the **[to fill]** lines can be filled in
-- [ ] Agree who presents, and whether we go live or send a recording (by Tuesday 24 November)
-- [ ] Presenters: say "get the latest and make it run for me", then rehearse the demo once
-- [ ] Time a run-through: if it's over 9 minutes, trim "How the afternoon went" first
+The checklist for getting ready is in `checklist.md`.
