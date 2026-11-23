@@ -3,17 +3,17 @@
 > The longer version of `showcase.md`, kept for writing slides and speaker notes. `showcase.md` has the short bullets to present from. If one changes, check the other.
 
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** 10-minute slot: about 9 minutes presenting, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. We're presenting live.
+**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay. We're presenting live.
 
-**Who presents what** _(a suggestion, to agree with them)_:
+**Who presents what:**
 
-| Who | Sections |
-|---|---|
-| **David** | The challenge and what we built (0:00–1:00); tooling, roles and the squad (4:30–7:30) |
-| **Bradley** | The demo (1:00–2:30); ideas to carry forward and what Mercator can take from this (7:30–9:00) |
-| **Chay** | How we worked and used Claude; what didn't go smoothly (2:30–4:30) |
+| Who | Slides | Sections |
+|---|---|---|
+| **Bradley** | 1 to 4 | Title, the challenge, what we built, and the demo slide (0:00–1:15) |
+| **David** | The live demo | Clicks through the prototype: the mum at 3am (1:15–2:30) |
+| **Chay** | 5 to 12 | How we worked and used Claude, through to questions (2:30–10:00) |
 
-> Draft by Eloise with Claude, 9 November; Chay's and David's reflections added 17 November. Lines marked **[to fill]** still need Mthoko's `/reflect` answers. Bradley's added 20 November. The deck is `Gusto showcase deck.pptx` (Chay's design).
+> Draft by Eloise with Claude, 9 November; Chay's and David's reflections added 17 November. Mthoko hasn't done his reflection, so his lines are left out. Bradley's added 20 November. The deck is `Gusto showcase deck.pptx` (Chay's design).
 
 ---
 
@@ -25,7 +25,7 @@
 
 ## 1:00 to 2:30: Demo: the mum at 3am
 
-Before the call, Bradley says "get the latest and make it run for me" so the site is running on his laptop. The demo slide links to **http://localhost:8766/**: it only works on a laptop where the site is running. Set **Pretend the time is** to **Sunday 3am** first (bottom of the page). Then click, saying what she'd feel:
+Bradley introduces the demo; David runs it. Before the call, David says "get the latest and make it run for me" so the site is running on his laptop, and he shares his screen for the demo. The demo slide links to **http://localhost:8766/**: it only works on a laptop where the site is running. Set **Pretend the time is** to **Sunday 3am** first (bottom of the page). Then click, saying what she'd feel:
 
 1. **No, not right now → Someone I care about.** *"It's 3am. Her son is 20 and hasn't come home again after Saturday night."* The app says: *"It's hard when someone you care about is using. You're not on your own."*
 2. **I don't know what to do or say.** What to do tonight, and how to talk tomorrow: *"I'm worried about you", not "You always…"*. No blame, no lecture.
@@ -44,7 +44,7 @@ Close with: *"At 3am, help really does run out. That's what the app is honest ab
   - **Build:** a first version on screen at 16:01, then small changes in plain words.
   - **Test:** Mthoko walked the prototype as *"a mother who's kept awake at night, it's 2am"*; Chay asked *"Can you test the pages"*.
   - **Share:** *"can you make sure everything is pushed, get the latest and then test everything"*.
-  - **And afterwards, this presentation:** Eloise asked Claude for a structure for an 8 to 10 minute talk. It drafted the showcase from our learning logs and the git history, quoting reflections word for word, then built the slides from the Mercator template. We steered it: shorter bullets, one demo, then a focus on how we worked. People still had to fill the gaps it couldn't: Bradley's and Mthoko's reflections, and checking the slides in PowerPoint.
+  - **And afterwards, this presentation:** Eloise asked Claude for a structure for an 8 to 10 minute talk. It drafted the showcase from our learning logs and the git history, quoting reflections word for word, then built the slides from the Mercator template. We steered it: shorter bullets, one demo, then a focus on how we worked. People still had to fill the gaps it couldn't: the reflections, and checking the slides in PowerPoint.
 
 **The timeline:**
 
@@ -69,8 +69,8 @@ The detail, for speaker notes:
 **Everyone did something outside their job:**
 - **Chay (QA engineer)** built a voice companion that listens and talks back, normally a developer's job. Then he used Claude to test every screen. In his words: *"I spun up a work board which if functional, could be used to scale up this project and be used on other projects."*
 - **David (content designer)** asked *"If someone chooses 'someone to talk to' then can we breakdown which helplines are best for what problem?"*. Claude offered three designs, and he chose and shipped a new question with real, sourced Scottish helplines. He also restyled the whole app.
-- **Bradley (user researcher)** built the family and friends path and the "Where help runs out" page for services. **[to fill: Bradley, in your words]**
-- **Mthoko (delivery manager)** walked the prototype as *"a mother who's kept awake at night, it's 2am"*, which found three gaps and became our main scenario. **[to fill: Mthoko, in your words]**
+- **Bradley (user researcher)** built the family and friends path and the "Where help runs out" page for services. In his words: *"I learned how using laude amplified what we got out as a team"*.
+- **Mthoko (delivery manager)** walked the prototype as *"a mother who's kept awake at night, it's 2am"*, which found three gaps and became our main scenario.
 - **Eloise (software developer)** did research, accessibility checks and data, not just code, including checking sources on every real helpline.
 
 **What surprised us:**
@@ -87,7 +87,6 @@ The detail, for speaker notes:
   - Chay (rarely): *"When deploying live I need help with scaling and security aspects of this."*
   - Eloise (sometimes): *"I needed help with what is most useful to prioritise for a demo. Also with what areas are good to focus on for accessibility"*
 - Next time: David suggests *"picking the challenge we want to solutionise and having an opportunity to do a mini-discovery before the day"*; Chay wanted *"a clearer timetable for post hackathon tasks"*; Eloise wanted *"A short break between end of coding and start of presentations"*.
-- **[to fill: Bradley's and Mthoko's views, including anything sceptical. Say it straight]**
 
 ## 7:30 to 9:00: Ideas to carry forward, and what Mercator should take from this
 
@@ -96,7 +95,6 @@ The detail, for speaker notes:
 - **David:** *"Keep using AI for doing the fiddly bits for certain kinds of work, like putting together a presentation,  because it can be a massive time saver."* He tried it: he gave Claude the Mercator slide deck template and his ideas, and got *"a good starter for 10"*.
 - **Eloise** tried hers *"when working with others in a claude workshop in the office"*.
 - **Bradley:** *"Using claude more so that I get more used to 'thinking to use it' i'm. still in a stage where i'm not sure what i can ask/can't ask it to do... what i can delegate vs what i ought not to etc."* Where it fits: internal work, a bid, client work where the tools are permitted. Not tried yet: *"just research sessions where i'm not sure if i'm allowed to use AI - still a lot of guardrails that i'm not famliar with so its easier to err on the side of not using it"*. What he learned: *"I think it's how to use cluade as a teammate and work with others. I learned how using laude amplified what we got out as a team"*. Specialist help (rarely): *"If things in my sessions get overly technical that I can't answer credibly, I lean on tech leads for support"*.
-- **[to fill: one idea from Mthoko, and where it went]**
 - **For Mercator, from Bradley:** people need clear guardrails on when they can use AI, or they'll err on the side of not using it.
 - **For Mercator:**
   - Mixed squads with AI build fast, and it's the mix of roles that catches the human problems (like the wrong help for someone staying sober).

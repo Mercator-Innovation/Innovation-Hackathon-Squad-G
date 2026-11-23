@@ -5,14 +5,13 @@
 Showcase: **Wednesday 25 November**, 14:00 to 15:40 on Teams. We're presenting **live**.
 
 **Before Monday's meeting (23 November)**
-- [ ] Mthoko runs `/reflect` (all three parts, about 5 minutes): the last **[to fill]** gaps
+- [ ] Mthoko runs `/reflect` (all three parts, about 5 minutes). His lines are left out of the showcase for now
 - [ ] Bradley runs `/reflect` to finish his 19:00 part
-- [ ] Bradley, David and Chay read their sections and the speaker notes
-- [ ] Bradley tries the demo: "get the latest and make it run for me", then click "Open the demo" in slideshow mode
-- [ ] Ask Claude to fill in Mthoko's lines in the deck and both files
+- [ ] Bradley (slides 1 to 4), David (live demo) and Chay (slides 5 to 12) read their parts and the speaker notes
+- [ ] David tries the demo: "get the latest and make it run for me", then open http://localhost:8766/ and click through the mum at 3am
 
 **At Monday's meeting**
-- [ ] Confirm presenters and the split (David, Bradley on the demo, Chay)
+- [ ] Agree the hand-overs: Bradley to David after slide 4, David back to Chay for slide 5
 - [ ] Timed run-through with the real deck and the live demo; aim for 9 minutes or less (trim "Our afternoon" first)
 - [ ] Agree changes, and pick one person to make them (two people editing at once caused a mix-up)
 - [ ] Agree a backup if the demo fails: talk through the 5 steps on the demo slide

@@ -1,17 +1,17 @@
 # Showcase: Squad Gusto
 
 **Wednesday 25 November, 14:00 to 15:40, on Teams.** About 9 minutes, then 1 minute for questions.
-**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay _(to confirm with them)_. We're presenting live.
+**Challenge 2: Help when it's needed.** Presenters: Bradley, David and Chay. We're presenting live.
 
-**Who presents what** _(a suggestion, to agree with them)_:
+**Who presents what:**
 
-| Who | Sections |
-|---|---|
-| **David** | The challenge and what we built (0:00–1:00); tooling, roles and the squad (4:30–7:30) |
-| **Bradley** | The demo (1:00–2:30); ideas to carry forward and what Mercator can take from this (7:30–9:00) |
-| **Chay** | How we worked and used Claude; what didn't go smoothly (2:30–4:30) |
+| Who | Slides | Sections |
+|---|---|---|
+| **Bradley** | 1 to 4 | Title, the challenge, what we built, and the demo slide (0:00–1:15) |
+| **David** | The live demo | Clicks through the prototype: the mum at 3am (1:15–2:30) |
+| **Chay** | 5 to 12 | How we worked and used Claude, through to questions (2:30–10:00) |
 
-> Draft by Eloise with Claude, 9 November; Chay's, David's and Bradley's reflections added by 20 November. **[to fill]** lines still need Mthoko's `/reflect` answers. The deck is `Gusto showcase deck.pptx` (Chay's design).
+> Draft by Eloise with Claude, 9 November; Chay's, David's and Bradley's reflections added by 20 November. Mthoko hasn't done his reflection, so his lines are left out. The deck is `Gusto showcase deck.pptx` (Chay's design).
 
 ---
 
@@ -26,7 +26,7 @@
 
 ## 1:00 to 2:30: Demo: the mum at 3am
 
-Before the call, Bradley says "get the latest and make it run for me". The demo slide links to **http://localhost:8766/**, which only works on his laptop once that's running. Then set **Pretend the time is** to **Sunday 3am**.
+Bradley introduces the demo; David runs it. Before the call, David says "get the latest and make it run for me", and shares his screen for the demo. The demo slide links to **http://localhost:8766/**, which only works on a laptop where the site is running. Then set **Pretend the time is** to **Sunday 3am**.
 
 1. **No, not right now → Someone I care about.** Her son, 20, hasn't come home.
 2. **I don't know what to do or say.** Tonight's steps, tomorrow's talk, no blame.
@@ -55,7 +55,7 @@ Close: *"At 3am, help really does run out."*
 - **Chay (QA):** built a talking voice companion and a work board
 - **David (content):** new helplines step, then restyled the app
 - **Bradley (research):** family path and the gaps page. Learned to use Claude *"as a teammate"*
-- **Mthoko (delivery):** the 2am mum scenario **[to fill: in their words]**
+- **Mthoko (delivery):** the 2am mum scenario
 - **Eloise (developer):** research, accessibility, checked sources
 
 **Surprises:**
@@ -74,7 +74,6 @@ Close: *"At 3am, help really does run out."*
   - Eloise: what to prioritise for a demo, and accessibility
   - Bradley: tech leads, when research sessions get technical
 - Not sure what's allowed: Bradley hasn't used AI in research sessions yet, because of *"a lot of guardrails that i'm not famliar with"*
-- **[to fill: Mthoko's views]**
 
 ## 7:30 to 9:00: Ideas to carry forward
 
@@ -82,7 +81,6 @@ Close: *"At 3am, help really does run out."*
 - **Chay:** take the prototypes live, for clients where tools are allowed
 - **David:** let AI do the fiddly bits. Tried it: a deck from the Mercator template
 - **Bradley:** use Claude more, to get used to *"thinking to use it"*. Not tried yet: unsure what's allowed
-- **[to fill: Mthoko]**
 - For Mercator:
   - Mixed roles catch the human problems
   - Small, frequent shares let five people build at once
